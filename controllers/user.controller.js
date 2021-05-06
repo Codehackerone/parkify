@@ -16,7 +16,7 @@ const renderLogin = (req, res) => {
 };
 const renderDashboard=(req,res)=>
 {
-    res.render('dashboard');
+    res.render('users/dashboard');
 }
 const register=async (req,res)=>
 {
