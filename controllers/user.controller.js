@@ -14,6 +14,17 @@ const register=async (req,res)=>
     }
 }
 
+const login = async (req, res) => {
+    try {
+        const result = await userService.Login(
+            req.body.username,
+            req.body.password
+        );
+        res.send(result);
+    } catch (err) {
+        res.send(err);
+    }
+};
 const renderLogin = (req, res) => {
     res.render('login');
 };
@@ -21,5 +32,6 @@ const renderLogin = (req, res) => {
 module.exports={
 renderLogin,
 renderRegister,
-register
+register,
+login
 };

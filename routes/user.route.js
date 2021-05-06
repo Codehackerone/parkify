@@ -8,5 +8,6 @@ Router.route('/register')
 
 Router.route('/login')
     .get(userController.renderLogin)
+    .post(userController.login)
 
 module.exports=Router;
