@@ -1,0 +1,41 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<% if (locals.messages.err) { %>
+    <script>
+        Swal.fire({
+        title: 'Error!',
+        text: '<%=locals.messages.err%>',
+        icon: 'error',
+        confirmButtonText: 'Okay'
+    })
+    </script>
+<% } %>
+<% if (locals.messages.success) { %>
+    <script>
+        Swal.fire({
+        title: 'Success!',
+        text: '<%=locals.messages.success%>',
+        icon: 'success',
+        confirmButtonText: 'Okay'
+    })
+    </script>
+<% } %>
+<% if (locals.messages.info) { %>
+    <script>
+        Swal.fire({
+        title: 'Info!',
+        text: '<%=locals.messages.info%>',
+        icon: 'info',
+        confirmButtonText: 'Okay'
+    })
+    </script>
+<% } %>
+<% if (locals.messages.alert) { %>
+    <script>
+        Swal.fire({
+        title: 'Alert!',
+        text: '<%=locals.messages.alert%>',
+        icon: 'alert',
+        confirmButtonText: 'Okay'
+    })
+    </script>
+<% } %>

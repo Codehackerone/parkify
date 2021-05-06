@@ -43,7 +43,6 @@ const login = async (req, res) => {
 
 const logout = (req, res) => {
     res.clearCookie('isloggedin');
-    res.clearCookie('x-access-token');
     res.status(200).send('Logged Out');
 };
 
