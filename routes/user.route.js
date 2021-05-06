@@ -4,6 +4,7 @@ const userController = require('../controllers/user.controller');
 
 Router.route('/register')
     .get(userController.renderRegister)
+    .post(userController.register)
 
 Router.route('/login')
     .get(userController.renderLogin)

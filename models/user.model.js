@@ -21,12 +21,6 @@ const userSchema = new Schema(
             type: Number,
             unique: true,
         },
-        address: {
-            city: String,
-            state: String,
-            zip_code: String,
-            street_address: String,
-        },
         username: {
             type: String,
             unique: true,
