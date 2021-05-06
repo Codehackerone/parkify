@@ -13,6 +13,24 @@ require('dotenv').config();
 
 const port = Number(process.env.PORT);
 
+const uri = String(process.env.MONGO_URI);
+const connectOptions = {
+    useNewUrlParser: true,
+    useCreateIndex: true, 
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+};
+
+mongoose
+    .connect(uri, connectOptions)
+    .then()
+    .catch((err) => console.log('Error:' + err));
+
+mongoose.connection.once('open', () =>
+    console.log('Connected to MongoDB successfully...')
+);
+
+
 const app = express();
 
 app.use(cors());
@@ -28,6 +46,10 @@ app.set('view engine', 'ejs');
 app.get('/', (req, res) => {
     res.render('index');
 });
+
+const userRouter = require('./routes/user.route');
+app.use('/users', userRouter);
+
 
 app.get('*', (req, res) => {
     res.render('not-found');
