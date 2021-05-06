@@ -11,7 +11,13 @@ let options = {
 const renderRegister = (req, res) => {
     res.render('register');
 };
-
+const renderLogin = (req, res) => {
+    res.render('login');
+};
+const renderDashboard=(req,res)=>
+{
+    res.send('Dashboard');
+}
 const register=async (req,res)=>
 {
     try {
@@ -34,13 +40,11 @@ const login = async (req, res) => {
         res.send(err);
     }
 };
-const renderLogin = (req, res) => {
-    res.render('login');
-};
 
 module.exports={
 renderLogin,
 renderRegister,
 register,
-login
+login,
+renderDashboard
 };
