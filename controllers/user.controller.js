@@ -16,7 +16,7 @@ const renderLogin = (req, res) => {
 };
 const renderDashboard=(req,res)=>
 {
-    res.send('Dashboard');
+    res.render('dashboard');
 }
 const register=async (req,res)=>
 {
@@ -41,10 +41,18 @@ const login = async (req, res) => {
     }
 };
 
+const logout = (req, res) => {
+    res.clearCookie('isloggedin');
+    res.clearCookie('x-access-token');
+    res.status(200).send('Logged Out');
+};
+
+
 module.exports={
 renderLogin,
 renderRegister,
 register,
 login,
-renderDashboard
+renderDashboard,
+logout
 };

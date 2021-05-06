@@ -15,4 +15,7 @@ Router.route('/login')
 Router.route('/dashboard')    
     .get(IsLoggedInMiddleware(),userController.renderDashboard)
 
+Router.route('/logout')
+    .delete(IsLoggedInMiddleware(), userController.logout);
+
 module.exports=Router;
