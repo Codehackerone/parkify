@@ -33,10 +33,36 @@ mongoose.connection.once('open', () =>
 
 const app = express();
 
+const secret = process.env.SECRET;
+
+const store = new MongoDBStore({
+    url: uri,
+    secret,
+    touchAfter: 24 * 60 * 60,
+});
+
+store.on('error', function (e) {
+    console.log('SESSION STORE ERROR', e);
+});
+
+const sessionConfig = {
+    store,
+    name: 'session',
+    secret,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+    },
+};
+
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(session(sessionConfig));
 app.use(methodOverride('_method'));
 app.use(helmet({ contentSecurityPolicy: false }));
 
