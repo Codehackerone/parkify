@@ -1,5 +1,13 @@
 const userService = require('../services/user.service');
 
+let options = {
+    path: '/',
+    sameSite: true,
+    maxAge: 1000 * 60 * 60 * Number(process.env.EXPIRY), 
+    httpOnly: true, 
+};
+
+
 const renderRegister = (req, res) => {
     res.render('register');
 };
@@ -20,6 +28,7 @@ const login = async (req, res) => {
             req.body.username,
             req.body.password
         );
+        res.cookie('isloggedin', result.token, options);
         res.send(result);
     } catch (err) {
         res.send(err);
