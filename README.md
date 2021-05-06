@@ -1,2 +1,2 @@
 # parkify
-Parking App.
+Parking Web Application.
