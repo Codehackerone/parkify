@@ -1,15 +1,16 @@
 const express = require('express');
 const Router = express.Router();
 const userController = require('../controllers/user.controller');
-const IsLoggedInMiddleware=require('../middleware/login.middleware')
+const IsLoggedInMiddleware=require('../middleware/login.middleware');
+const sanitizerMiddleware=require('../middleware/sanitizer.middleware');
 
 Router.route('/register')
     .get(userController.renderRegister)
-    .post(userController.register)
+    .post(sanitizerMiddleware(),userController.register)
 
 Router.route('/login')
     .get(userController.renderLogin)
-    .post(userController.login)
+    .post(sanitizerMiddleware(),userController.login)
 
 Router.route('/dashboard')    
     .get(IsLoggedInMiddleware(),userController.renderDashboard)
