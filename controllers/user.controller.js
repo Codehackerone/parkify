@@ -9,10 +9,10 @@ let options = {
 
 
 const renderRegister = (req, res) => {
-    res.render('register');
+    res.render('users/register');
 };
 const renderLogin = (req, res) => {
-    res.render('login');
+    res.render('users/login');
 };
 const renderDashboard=(req,res)=>
 {
