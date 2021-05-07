@@ -19,6 +19,12 @@ const slotSchema = new Schema(
             type: Number,
             required: true,
         },
+        bookings:[
+            {
+                type:Schema.Types.ObjectId,
+                ref:'Booking'
+            }
+        ]
     },
     {
         timestamps: true,
