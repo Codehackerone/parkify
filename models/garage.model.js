@@ -13,7 +13,7 @@ const garageSchema = new Schema(
         },
         location_cat:{
             type:String,
-            required: ["outskirts", "prime", "nice"]
+            enum: ["outskirts", "prime", "nice"]
         },
         size: {
             type: String,

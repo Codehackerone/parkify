@@ -80,6 +80,9 @@ app.use('/users', userRouter);
 const garageRouter = require('./routes/garage.route');
 app.use('/garage', garageRouter);
 
+const slotRouter = require('./routes/slot.route');
+app.use('/slot', slotRouter);
+
 
 app.get('*', (req, res) => {
     res.render('not-found');

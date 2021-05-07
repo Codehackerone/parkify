@@ -13,7 +13,7 @@ const slotSchema = new Schema(
         },
         type: {
             type:String,
-            required: ["Big", "Medium", "Small"]
+            enum: ["Large", "Medium", "Small"]
         },
         price: {
             type: Number,
