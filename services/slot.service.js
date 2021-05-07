@@ -9,6 +9,19 @@ const AddSlot = async (slotBody) => {
 };
 
 
+const FindSlot = async (id) => {
+    try{
+    const slot = await Slot.findOne({ _id: id });
+    return slot;
+    }
+    catch(err)
+    {
+        const slot=null;
+        return slot;
+    }    
+};
+
 module.exports={
-    AddSlot
+    AddSlot,
+    FindSlot
 };

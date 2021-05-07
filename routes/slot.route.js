@@ -8,4 +8,7 @@ Router.route('/add')
     .get(slotController.renderAddSlot)
     .post(slotController.addSlot)
 
+Router.route('/:id')
+    .get(slotController.renderSlot)
+    
 module.exports=Router;
