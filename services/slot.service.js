@@ -1,8 +1,13 @@
 const Slot = require('../models/slot.model');
+const Garage=require('../models/garage.model');
 
 const AddSlot = async (slotBody) => {
     try {
-        return await Slot.create(slotBody);
+        const result=await Slot.create(slotBody);
+        const garage=await Garage.findById(slotBody.garage_id)
+        garage.slots.push(result);
+        await garage.save();
+        return result;
     } catch (error) {
         throw error;
     }

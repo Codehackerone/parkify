@@ -22,7 +22,13 @@ const garageSchema = new Schema(
         owner:{
             type: String,
             required: true,
-        }
+        },
+        slots:[
+            {
+                type:Schema.Types.ObjectId,
+                ref:'Slot'
+            }
+        ]
     },
     {
         timestamps: true,
