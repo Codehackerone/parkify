@@ -18,7 +18,7 @@ const IsLoggedInMiddleware = () => {
                 {
                     res.send('User doesnt exist');
                 }
-                else if(user.verified===false)
+                else if(user.verified===false && req.url!="/verify")
                 {
                     res.send('Not Verified. Verify First');
                 }
