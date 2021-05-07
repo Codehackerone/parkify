@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const slotSchema = new Schema(
+const bookingSchema = new Schema(
     {
         slot_id: {
             type: Schema.Types.ObjectId,
@@ -25,6 +25,6 @@ const slotSchema = new Schema(
     }
 );
 
-let Slot = mongoose.model('Slot', slotSchema);
+let Booking = mongoose.model('Booking', bookingSchema);
 
-module.exports = Slot;
+module.exports = Booking;
