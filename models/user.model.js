@@ -25,6 +25,10 @@ const userSchema = new Schema(
             type: String,
             unique: true,
         },
+        verified:{
+            type:Boolean,
+            default:false,
+        }
     },
     {
         timestamps: true,

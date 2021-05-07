@@ -12,6 +12,10 @@ Router.route('/login')
     .get(userController.renderLogin)
     .post(sanitizerMiddleware(),userController.login)
 
+Router.route('/verify')
+    .get(userController.renderVerify)
+    .post(userController.verify)
+
 Router.route('/dashboard')    
     .get(IsLoggedInMiddleware(),userController.renderDashboard)
 

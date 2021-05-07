@@ -1,4 +1,4 @@
-const getRandomotp = (length) => {
+const getRandomOtp = (length) => {
     var result = '';
     var characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     var charactersLength = characters.length;
