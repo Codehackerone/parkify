@@ -9,8 +9,15 @@ const AddGarage = async (garageBody) => {
 };
 
 const FindGarage = async (id) => {
-    const garage = await Garage.findOne({ _id: id });
-    return garage;
+    try{
+        const garage = await Garage.findOne({ _id: id });
+        return garage;
+        }
+        catch(err)
+        {
+            const garage=null;
+            return garage;
+        }    
 };
 
 module.exports={
