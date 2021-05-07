@@ -12,11 +12,11 @@ const bookingSchema = new Schema(
             ref: 'User',
         },
         start_time:{
-            type:Date,
+            type:Number,
             required:true
         },
         end_time:{
-            type:Date,
+            type:Number,
             required:true
         }
     },
