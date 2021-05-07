@@ -8,4 +8,7 @@ Router.route('/add')
     .get(garageController.renderAddGarage)
     .post(garageController.addGarage)
 
+Router.route('/:id')
+    .get(garageController.renderGarage);
+
 module.exports=Router;

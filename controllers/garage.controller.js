@@ -14,8 +14,18 @@ const addGarage=async (req,res)=>
     }
 }
 
+const renderGarage = async (req, res) => {
+    var garage_id = req.params.id;
+    const garage = await garageService.FindGarage(garage_id);
+    if (!garage) {
+        res.send('Garage Not Found.');
+    } else {
+        res.send(garage);
+    }
+};
 
 module.exports={
 renderAddGarage,
-addGarage
+addGarage,
+renderGarage
 };
