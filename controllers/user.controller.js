@@ -1,9 +1,17 @@
 const userService = require('../services/user.service');
+const jwt = require('jsonwebtoken');
 
 let options = {
     path: '/',
     sameSite: true,
     maxAge: 1000 * 60 * 60 * Number(process.env.EXPIRY), 
+    httpOnly: true, 
+};
+
+let options_otp = {
+    path: '/',
+    sameSite: true,
+    maxAge: 1000 * 60 * 5, 
     httpOnly: true, 
 };
 const renderRegister = (req, res) => {
@@ -24,7 +32,8 @@ const renderVerify=async(req,res)=>
     }
     else
     {
-        await sendOtp(req.body.username);
+        var result=await sendOtp(req.body.username);
+        res.cookie('otp', result.token, options_otp);
         res.render('users/verify',{email:req.body.email});
     }
 }
@@ -42,10 +51,7 @@ const sendOtp=async(username)=>
 {
     try{
         var gen_otp=await userService.generateOtp(username);
-        return {
-            email:gen_otp.user.email,
-            otp:otp,
-        }
+        return gen_otp;
     }
     catch(err)
     {
@@ -73,7 +79,23 @@ const logout = (req, res) => {
 
 const verify=async(req,res)=>
 {
-
+    var otp=req.body.otp;
+    let token = req.cookies['otp'];
+    let decoded = jwt.verify(token, process.env.JWT_SECRET);
+    if (!decoded)
+        return res.json('Expired or Invalid login token');
+    else
+    {
+        if(decoded.otp===otp){
+            await userService.verified(req.body.username);
+            res.clearCookie('otp');
+            res.send('Verified')
+        }
+        else
+        {
+            res.send('reenter otp');
+        }
+    }
 }
 
 

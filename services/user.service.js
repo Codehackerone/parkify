@@ -46,7 +46,13 @@ const generateOtp=async(username)=>
     const user = await User.findOne({ username });
     if (!user) throw 'User doesnt exist';
     await sendmail(user.email,'OTP',otp);
+    const accessToken = jwt.sign(
+        { username: user.username, otp:otp},
+        process.env.JWT_SECRET,
+        jwt_headers
+    );
     return {
+        token: accessToken,
         otp:otp,
         user:user
     };
@@ -72,8 +78,17 @@ const Login = async (username, password) => {
         user: user,
     };
 };
+
+const verified=async(username)=>{
+    const user = await User.findOne({ username });
+    if (!user) throw 'Invalid Username or Password';
+    user.verified=true;
+    await user.save();
+}
+
 module.exports={
     Register,
     Login,
-    generateOtp
+    generateOtp,
+    verified
 };

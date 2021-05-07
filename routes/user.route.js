@@ -14,7 +14,7 @@ Router.route('/login')
 
 Router.route('/verify')
     .get(IsLoggedInMiddleware(),userController.renderVerify)
-    .post(userController.verify)
+    .post(IsLoggedInMiddleware(),userController.verify)
 
 Router.route('/dashboard')    
     .get(IsLoggedInMiddleware(),userController.renderDashboard)
