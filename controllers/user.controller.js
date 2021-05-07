@@ -1,6 +1,4 @@
 const userService = require('../services/user.service');
-const getRandomOtp=require('../utils/otpgen');
-const nodemailer = require("nodemailer");
 
 let options = {
     path: '/',
@@ -8,44 +6,27 @@ let options = {
     maxAge: 1000 * 60 * 60 * Number(process.env.EXPIRY), 
     httpOnly: true, 
 };
-
-async function sendmail(to,subject, otp) {
-    var transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-        user: process.env.EMAIL,
-        pass: process.env.PASS,
-    },
-    });
-    var mailOptions = {
-    from: process.env.EMAIL,
-    to: to,
-    subject: subject,
-    html: `Your otp is :${otp}`,
-    };
-    await transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-        console.log(error);
-    } else {
-        console.log("Email sent: " + info.response);
-    }
-    });
-}
-
 const renderRegister = (req, res) => {
     res.render('users/register');
 };
 const renderLogin = (req, res) => {
-    //sendmail('soumyajitdatta123@gmail.com','OTP','6R381')
     res.render('users/login');
 };
 const renderDashboard=(req,res)=>
 {
     res.render('users/dashboard');
 }
-const renderVerify=(req,res)=>
+const renderVerify=async(req,res)=>
 {
-    res.render('users/verify');
+    if(req.body.verified===true)
+    {
+        res.send('Already Verified');
+    }
+    else
+    {
+        await sendOtp(req.body.username);
+        res.render('users/verify',{email:req.body.email});
+    }
 }
 const register=async (req,res)=>
 {
@@ -54,6 +35,21 @@ const register=async (req,res)=>
         res.send(result);
     } catch (err) {
         res.send(err);
+    }
+}
+
+const sendOtp=async(username)=>
+{
+    try{
+        var gen_otp=await userService.generateOtp(username);
+        return {
+            email:gen_otp.user.email,
+            otp:otp,
+        }
+    }
+    catch(err)
+    {
+        return(err);
     }
 }
 

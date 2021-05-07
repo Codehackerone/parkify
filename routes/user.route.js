@@ -13,7 +13,7 @@ Router.route('/login')
     .post(sanitizerMiddleware(),userController.login)
 
 Router.route('/verify')
-    .get(userController.renderVerify)
+    .get(IsLoggedInMiddleware(),userController.renderVerify)
     .post(userController.verify)
 
 Router.route('/dashboard')    

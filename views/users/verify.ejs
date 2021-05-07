@@ -11,7 +11,7 @@
   
 <%- include('../partials/alerts.ejs') %>  
 <h1>Verify Email</h1>
-Email-<%= %><br>
+Email-<%=email%><br>
 <form action="/users/verify" method="POST">
     <input type="text" name="otp" placeholder="OTP">
     <button type="submit">Submit</button>

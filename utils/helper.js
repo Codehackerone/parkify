@@ -9,3 +9,7 @@ const getRandomOtp = (length) => {
     }
     return result;
 };
+
+module.exports={
+    getRandomOtp
+}

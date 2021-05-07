@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const User = require('../models/user.model');
 
 const IsLoggedInMiddleware = () => {
     return async (req, res, next) => {
@@ -12,9 +13,15 @@ const IsLoggedInMiddleware = () => {
                 let decoded = jwt.verify(token, process.env.JWT_SECRET);
                 if (!decoded)
                     return res.status(401).json('Expired or Invalid token');
+                let user = await User.findOne({ username: decoded.username });
+                req.body.email = user.email;
+                req.body.name = user.name;
+                req.body.verified=user.verified;
+                req.body.phone=user.phone;
+                req.body.username = user.username;
                 next();
             } catch (error) {
-                return res.status(500).json(error);
+                return res.status(500).send(error);
             }
         }
     };
