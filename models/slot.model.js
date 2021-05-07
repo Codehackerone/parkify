@@ -25,6 +25,6 @@ const slotSchema = new Schema(
     }
 );
 
-let Slot = mongoose.model('Slot', bookSchema);
+let Slot = mongoose.model('Slot', slotSchema);
 
 module.exports = Slot;
