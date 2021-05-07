@@ -77,6 +77,9 @@ app.get('/', (req, res) => {
 const userRouter = require('./routes/user.route');
 app.use('/users', userRouter);
 
+const garageRouter = require('./routes/garage.route');
+app.use('/garage', garageRouter);
+
 
 app.get('*', (req, res) => {
     res.render('not-found');
