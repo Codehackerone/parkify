@@ -15,20 +15,24 @@ const NewBooking = async (bookingBody) => {
             {
                 var booking=await Booking.findById(all_bookings[i]);
                 if(!booking)continue;
-                if(!((bookingBody.start_time<=booking.start_time && bookingBody.end_time<=booking.end_time)||
-                (bookingBody.start_time>=booking.start_time && bookingBody.end_time>=booking.end_time))){
+                var a=parseInt(booking.start_time),b=parseInt(booking.end_time);
+                var c=parseInt(bookingBody.start_time),d=parseInt(bookingBody.end_time);
+                if((c>=a && c<=b)||(d>=a && d<=b)||(c<=a && d>=b)){
                     throw "Already Booked!";
+                }
+                else{
+                    continue;
                 }                
             }
         }
         const user=await User.findById(bookingBody.user_id);
         if(!user) throw "User doesnt Exist";
-        if(bookingBody.amount>user.money)throw "Not Enough Money!";
+        if(bookingBody.amount>user.money)throw "Insufficient Funds!!";
         const result=await Booking.create(bookingBody);
         slot.bookings.push(result);
         await slot.save();
         var money=parseFloat(user.money);
-        money-=parseFloat(money_req);
+        money=money-parseFloat(bookingBody.amount);
         user.money=money;
         await user.save();
         return result;
