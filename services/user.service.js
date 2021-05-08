@@ -90,7 +90,7 @@ const Login = async (username, password) => {
 
 const verified=async(username)=>{
     const user = await User.findOne({ username });
-    if (!user) throw 'Invalid Username or Password';
+    if (!user) throw 'User Doesnt Exist';
     user.verified=true;
     await user.save();
 }
@@ -104,10 +104,20 @@ const updateImage = async (userid, path) => {
     }
 };
 
+const addMoney=async(user_id,added_money)=>
+{   
+    const user = await User.findById(user_id);
+    if (!user) throw 'User Doesnt Exist';
+    else{
+        user.money+=added_money;
+        await user.save();
+    }
+}
 module.exports={
     Register,
     Login,
     generateOtp,
     verified,
-    updateImage
+    updateImage,
+    addMoney
 };

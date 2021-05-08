@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Update Image</title>
+    <title>Add Money</title>
     <%- include('../partials/header')%>
 </head>
 <body>
     <%- include('../partials/alerts')%>
     <div class="container">
-        <h1>Upload Image</h1>
-    <form action="/users/changeimage" enctype="multipart/form-data" method="POST">
-        <input type="file" name="image" required>
+        <h1>Add Money</h1>
+        <h3>Current Balance - <%=money%></h3>
+    <form action="/users/addmoney" method="POST">
+        <input type="number" name="added_money" required placeholder="Enter Amount">
         <button type="submit">Submit</button>
     </form>
     </div>

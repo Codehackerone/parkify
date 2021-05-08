@@ -24,6 +24,10 @@ const renderDashboard=(req,res)=>
 {
     res.render('users/dashboard', {body: req.body});
 }
+const renderAddMoney=(req,res)=>
+{
+    res.render('users/addmoney',{money:req.body.money});
+}
 const renderVerify=async(req,res)=>
 {
     if(req.body.verified===true)
@@ -115,6 +119,18 @@ const uploadImage = async (req, res) => {
     }
 };
 
+const addMoney=async (req,res)=>
+{
+    var add_money=req.body.added_money;
+    try{
+        await userService.addMoney(req.body.user_id,add_money);
+        res.send('Money Added Successfully');
+    }
+    catch(err)
+    {
+        res.send(err);
+    }
+}
 module.exports={
 renderLogin,
 renderRegister,
@@ -125,5 +141,7 @@ logout,
 renderVerify,
 verify,
 renderImage,
-uploadImage
+uploadImage,
+renderAddMoney,
+addMoney
 };

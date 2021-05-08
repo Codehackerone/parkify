@@ -26,6 +26,10 @@ Router.route('/changeimage')
     .get(IsLoggedInMiddleware(), userController.renderImage)
     .post(upload.single('image'),IsLoggedInMiddleware(),userController.uploadImage);
 
+Router.route('/addmoney')
+    .get(IsLoggedInMiddleware(), userController.renderAddMoney)
+    .post(IsLoggedInMiddleware(), userController.addMoney)
+
 Router.route('/logout')
     .delete(IsLoggedInMiddleware(), userController.logout);
 
