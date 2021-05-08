@@ -13,7 +13,7 @@ const newBooking=async(req,res)=>{
     }
 }
 
-const renderBooking=(req,res)=>
+const renderBooking=async(req,res)=>
 {
     var booking_id = req.params.id;
     const booking = await bookingService.FindBooking(booking_id);
@@ -24,12 +24,12 @@ const renderBooking=(req,res)=>
     }
 }
 
-const deleteBooking=(req,res)=>
+const deleteBooking=async(req,res)=>
 {
     var booking_id=req.params.id;
     try{
         await bookingService.DeleteBooking(booking_id);
-        res.send('Deleted Successfully.')
+        res.send('Booking Deleted Successfully.')
     }
     catch(err)
     {

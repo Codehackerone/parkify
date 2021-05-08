@@ -26,7 +26,23 @@ const FindSlot = async (id) => {
     }    
 };
 
+const DeleteSlot=async(id)=>
+{
+    try
+    {
+        const slot=await Slot.findById(id);
+        await Garage.findByIdAndUpdate(slot.garage_id, { $pull: { slots: id } });
+        await Slot.findByIdAndDelete(id);
+    }
+    catch(err)
+    {
+        throw err;
+    }
+}
+
+
 module.exports={
     AddSlot,
-    FindSlot
+    FindSlot,
+    DeleteSlot
 };

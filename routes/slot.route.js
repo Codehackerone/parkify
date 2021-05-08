@@ -10,5 +10,6 @@ Router.route('/add')
 
 Router.route('/:id')
     .get(slotController.renderSlot)
+    .delete(slotController.deleteSlot)
     
 module.exports=Router;

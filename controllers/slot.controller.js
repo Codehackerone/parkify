@@ -23,8 +23,24 @@ const renderSlot = async (req, res) => {
         res.send(slot);
     }
 };
+
+
+const deleteSlot=async(req,res)=>
+{
+    var slot_id=req.params.id;
+    try{
+        await slotService.DeleteSlot(slot_id);
+        res.send('Slot Deleted Successfully.')
+    }
+    catch(err)
+    {
+        res.send(err);
+    }
+}
+
 module.exports={
     renderAddSlot,
     addSlot,
-    renderSlot
+    renderSlot,
+    deleteSlot
 };
