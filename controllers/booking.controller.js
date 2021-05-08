@@ -13,7 +13,19 @@ const newBooking=async(req,res)=>{
     }
 }
 
+const renderBooking=(req,res)=>
+{
+    var booking_id = req.params.id;
+    const booking = await bookingService.FindBook(booking_id);
+    if (!book) {
+        res.status(404).send('Booking Not Found.');
+    } else {
+        res.status(200).send(booking);
+    }
+}
+
 module.exports={
     renderNewBooking,
-    newBooking
+    newBooking,
+    renderBooking
 };

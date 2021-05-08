@@ -38,6 +38,12 @@ const NewBooking = async (bookingBody) => {
     }
 };
 
+const FindBooking = async (id) => {
+    const booking = await Book.findOne({ _id: id });
+    return booking;
+};
+
 module.exports={
-    NewBooking
+    NewBooking,
+    FindBooking
 }

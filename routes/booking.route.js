@@ -8,4 +8,8 @@ Router.route('/new')
     .get(bookingController.renderNewBooking)
     .post(bookingController.newBooking)
     
+Router.route('/:id')
+    .get(bookingController.renderBooking)
+    .delete(bookingController.deleteBooking)
+
 module.exports=Router;
