@@ -12,7 +12,7 @@
 <%- include('../partials/alerts.ejs') %>  
 <h1>Dashboard</h1>
 <h3>Welcome <%=body.name%></h3>
-<h4>Money - Rs. <%=body.money%></h4>
+<h4>Money - Rs. <%=body.money%>. <a href="addmoney"><button>Add Money</button></a></h4>
 <img src="<%=body.picture_url%>" height="100" width="100"> 
 <form method="POST" action="/users/logout?_method=DELETE">
     <button type="submit">Logout</button>

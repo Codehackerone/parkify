@@ -109,7 +109,9 @@ const addMoney=async(user_id,added_money)=>
     const user = await User.findById(user_id);
     if (!user) throw 'User Doesnt Exist';
     else{
-        user.money+=added_money;
+        var money=parseFloat(user.money);
+        money+=parseFloat(added_money);
+        user.money=money;
         await user.save();
     }
 }

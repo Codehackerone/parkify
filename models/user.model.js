@@ -36,8 +36,8 @@ const userSchema = new Schema(
         },
         money:
         {
-            type:Number,
-            default:0
+            type:Schema.Types.Decimal128,
+            default:0.00
         },
         picture_url: {
             type: String,

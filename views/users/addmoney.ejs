@@ -10,7 +10,7 @@
         <h1>Add Money</h1>
         <h3>Current Balance - <%=money%></h3>
     <form action="/users/addmoney" method="POST">
-        <input type="number" name="added_money" required placeholder="Enter Amount">
+        <input type="number" name="added_money" required placeholder="Enter Amount" min=0 max=10000000 step=0.01>
         <button type="submit">Submit</button>
     </form>
     </div>
