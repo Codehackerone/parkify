@@ -20,8 +20,8 @@ const bookingSchema = new Schema(
             required:true
         },
         amount:{
-            type:Number,
-            required:true,
+            type:Schema.Types.Decimal128,
+            required:true
         },
         status:{
             type:String,
