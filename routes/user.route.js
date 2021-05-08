@@ -1,5 +1,8 @@
 const express = require('express');
 const Router = express.Router();
+const multer = require('multer');
+const { storage } = require('../cloudinary');
+const upload = multer({ storage });
 const userController = require('../controllers/user.controller');
 const IsLoggedInMiddleware=require('../middleware/login.middleware');
 const sanitizerMiddleware=require('../middleware/sanitizer.middleware');
@@ -18,6 +21,10 @@ Router.route('/verify')
 
 Router.route('/dashboard')    
     .get(IsLoggedInMiddleware(),userController.renderDashboard)
+
+Router.route('/changeimage')
+    .get(IsLoggedInMiddleware(), userController.renderImage)
+    .post(upload.single('image'),IsLoggedInMiddleware(),userController.uploadImage);
 
 Router.route('/logout')
     .delete(IsLoggedInMiddleware(), userController.logout);

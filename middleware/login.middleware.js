@@ -23,11 +23,13 @@ const IsLoggedInMiddleware = () => {
                     res.send('Not Verified. Verify First');
                 }
                 else{
+                    req.body.user_id=user._id;
                     req.body.email = user.email;
                     req.body.name = user.name;
                     req.body.verified=user.verified;
                     req.body.phone=user.phone;
                     req.body.username = user.username;
+                    req.body.picture_url=user.picture_url;
                     next();
                 }
             } catch (error) {

@@ -95,9 +95,19 @@ const verified=async(username)=>{
     await user.save();
 }
 
+
+const updateImage = async (userid, path) => {
+    try {
+        await User.findOneAndUpdate({ _id: userid }, { picture_url: path });
+    } catch (err) {
+        throw err;
+    }
+};
+
 module.exports={
     Register,
     Login,
     generateOtp,
-    verified
+    verified,
+    updateImage
 };

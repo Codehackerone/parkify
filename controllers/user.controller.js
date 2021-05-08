@@ -22,7 +22,7 @@ const renderLogin = (req, res) => {
 };
 const renderDashboard=(req,res)=>
 {
-    res.render('users/dashboard');
+    res.render('users/dashboard', {body: req.body});
 }
 const renderVerify=async(req,res)=>
 {
@@ -99,6 +99,21 @@ const verify=async(req,res)=>
     }
 }
 
+const renderImage = (req, res) => {
+    res.render('users/uploadimage');
+};
+
+const uploadImage = async (req, res) => {
+    var path = req.file['path'];
+    var userid = req.body.user_id;
+    console.log(path+" "+userid);
+    try {
+        await userService.updateImage(userid, path);
+        res.status(200).send('Image Uploaded Successfully');
+    } catch (err) {
+        res.status(500).send('Error');
+    }
+};
 
 module.exports={
 renderLogin,
@@ -108,5 +123,7 @@ login,
 renderDashboard,
 logout,
 renderVerify,
-verify
+verify,
+renderImage,
+uploadImage
 };

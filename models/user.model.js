@@ -38,6 +38,10 @@ const userSchema = new Schema(
         {
             type:Number,
             default:0
+        },
+        picture_url: {
+            type: String,
+            default: 'https://res.cloudinary.com/codehackerone/image/upload/v1620454218/default_dp_ubrfcg.jpg',
         }
     },
     {

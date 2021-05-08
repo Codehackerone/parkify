@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <%- include('../partials/header')%>
+</head>
+<body>
+    <%- include('../partials/alerts')%>
+    <div class="container">
+        <h1>Upload Image</h1>
+    <form action="/users/changeimage" enctype="multipart/form-data" method="POST">
+        <input type="file" name="image" required>
+        <button type="submit">Submit</button>
+    </form>
+    </div>
+</body>
+</html>
