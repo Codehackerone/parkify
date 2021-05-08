@@ -18,6 +18,15 @@ const bookingSchema = new Schema(
         end_time:{
             type:Number,
             required:true
+        },
+        amount:{
+            type:Number,
+            required:true,
+        },
+        status:{
+            type:String,
+            enum:['Completed','Cancelled','Booked'],
+            default:'Booked',
         }
     },
     {

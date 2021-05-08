@@ -28,6 +28,16 @@ const userSchema = new Schema(
         verified:{
             type:Boolean,
             default:false,
+        },
+        type:
+        {
+            type:String,
+            default:'user',
+        },
+        money:
+        {
+            type:Number,
+            default:0
         }
     },
     {
