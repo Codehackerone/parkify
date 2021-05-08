@@ -20,7 +20,7 @@ const renderGarage = async (req, res) => {
     if (!garage) {
         res.send('Garage Not Found.');
     } else {
-        res.send(garage);
+        res.render('garages/viewgarage',{garage:garage});
     }
 };
 
@@ -29,9 +29,16 @@ const renderAllGarages=async(req,res)=>{
     res.render('garages/allgarages',{garages:garages});
 }
 
+const apiSlotInfo=async(id)=>
+{
+    const slot=await garageService.findSlots(id);
+    return slot;
+}
+
 module.exports={
 renderAddGarage,
 addGarage,
 renderGarage,
-renderAllGarages
+renderAllGarages,
+apiSlotInfo
 };
