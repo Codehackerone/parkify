@@ -4,7 +4,6 @@ const User=require('../models/user.model');
 
 const NewBooking = async (bookingBody) => {
     try {
-        const money_req=bookingBody.money_req;
         const slot=await Slot.findById(bookingBody.slot_id);
         if(bookingBody.start_time>=bookingBody.end_time){
             throw "PLease Choose Correct timing!";
@@ -24,7 +23,7 @@ const NewBooking = async (bookingBody) => {
         }
         const user=await User.findById(bookingBody.user_id);
         if(!user) throw "User doesnt Exist";
-        if(money_req>user.money)throw "Not Enough Money!";
+        if(bookingBody.amount>user.money)throw "Not Enough Money!";
         const result=await Booking.create(bookingBody);
         slot.bookings.push(result);
         await slot.save();
@@ -39,7 +38,7 @@ const NewBooking = async (bookingBody) => {
 };
 
 const FindBooking = async (id) => {
-    const booking = await Book.findOne({ _id: id });
+    const booking = await Booking.findOne({ _id: id });
     return booking;
 };
 
@@ -57,8 +56,22 @@ const DeleteBooking=async(id)=>
     }
 }
 
+const apiMoney=async(slot_id)=>
+{
+    try
+    {
+        var slot=await Slot.findById(slot_id);
+        return slot.price;
+    }
+    catch(err)
+    {
+        return err;
+    }
+}
+
 module.exports={
     NewBooking,
     FindBooking,
-    DeleteBooking
+    DeleteBooking,
+    apiMoney
 }
