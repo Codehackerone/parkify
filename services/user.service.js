@@ -34,7 +34,16 @@ async function sendmail(to,subject, otp) {
 
 const Register = async (userBody) => {
     try {
-        return await User.create(userBody);
+        const user= await User.create(userBody);
+        const accessToken = jwt.sign(
+            { username: user.username, user_id: user._id },
+            process.env.JWT_SECRET,
+            jwt_headers
+        );
+        return {
+            token: accessToken,
+            user: user,
+        };
     } catch (error) {
         throw error;
     }

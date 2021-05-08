@@ -41,7 +41,8 @@ const register=async (req,res)=>
 {
     try {
         const result = await userService.Register(req.body);
-        res.send(result);
+        res.cookie('isloggedin', result.token, options);
+        res.send(result.user);
     } catch (err) {
         res.send(err);
     }
