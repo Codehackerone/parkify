@@ -43,7 +43,22 @@ const FindBooking = async (id) => {
     return booking;
 };
 
+const DeleteBooking=async(id)=>
+{
+    try
+    {
+        const booking=await Booking.findById(id);
+        await Slot.findByIdAndUpdate(booking.slot_id, { $pull: { bookings: id } });
+        await Booking.findByIdAndDelete(id);
+    }
+    catch(err)
+    {
+        throw err;
+    }
+}
+
 module.exports={
     NewBooking,
-    FindBooking
+    FindBooking,
+    DeleteBooking
 }

@@ -16,7 +16,7 @@ const newBooking=async(req,res)=>{
 const renderBooking=(req,res)=>
 {
     var booking_id = req.params.id;
-    const booking = await bookingService.FindBook(booking_id);
+    const booking = await bookingService.FindBooking(booking_id);
     if (!book) {
         res.status(404).send('Booking Not Found.');
     } else {
@@ -24,8 +24,22 @@ const renderBooking=(req,res)=>
     }
 }
 
+const deleteBooking=(req,res)=>
+{
+    var booking_id=req.params.id;
+    try{
+        await bookingService.DeleteBooking(booking_id);
+        res.send('Deleted Successfully.')
+    }
+    catch(err)
+    {
+        res.send(err);
+    }
+}
+
 module.exports={
     renderNewBooking,
     newBooking,
-    renderBooking
+    renderBooking,
+    deleteBooking
 };
