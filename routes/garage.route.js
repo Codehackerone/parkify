@@ -4,6 +4,8 @@ const garageController = require('../controllers/garage.controller');
 const IsLoggedInMiddleware=require('../middleware/login.middleware');
 const sanitizerMiddleware=require('../middleware/sanitizer.middleware');
 
+Router.route('/')
+    .get(garageController.renderAllGarages)
 Router.route('/add')
     .get(garageController.renderAddGarage)
     .post(garageController.addGarage)

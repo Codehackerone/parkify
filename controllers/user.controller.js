@@ -131,6 +131,14 @@ const addMoney=async (req,res)=>
         res.send(err);
     }
 }
+
+const apiOtp=(str)=>
+{
+    let token = req.cookies['otp'];
+    let decoded = jwt.verify(token, process.env.JWT_SECRET);
+    if(decoded.otp===str)return true;
+    else return false;
+}
 module.exports={
 renderLogin,
 renderRegister,
@@ -143,5 +151,6 @@ verify,
 renderImage,
 uploadImage,
 renderAddMoney,
-addMoney
+addMoney,
+apiOtp
 };

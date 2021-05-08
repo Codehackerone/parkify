@@ -20,7 +20,11 @@ const FindGarage = async (id) => {
         }    
 };
 
+const AllGarages=async()=>{
+    return await Garage.find({});
+}
 module.exports={
     AddGarage,
-    FindGarage
+    FindGarage,
+    AllGarages
 };

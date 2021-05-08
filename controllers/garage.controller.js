@@ -24,8 +24,14 @@ const renderGarage = async (req, res) => {
     }
 };
 
+const renderAllGarages=async(req,res)=>{
+    var garages=await garageService.AllGarages();
+    res.render('garages/allgarages',{garages:garages});
+}
+
 module.exports={
 renderAddGarage,
 addGarage,
-renderGarage
+renderGarage,
+renderAllGarages
 };

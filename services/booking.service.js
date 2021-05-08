@@ -6,7 +6,7 @@ const NewBooking = async (bookingBody) => {
     try {
         const slot=await Slot.findById(bookingBody.slot_id);
         if(bookingBody.start_time>=bookingBody.end_time){
-            throw "PLease Choose Correct timing!";
+            throw "PLease Choose a Correct Start and End Date!";
         }
         const all_bookings=slot.bookings;
         if(all_bookings.length!=0)

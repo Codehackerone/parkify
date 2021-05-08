@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>All Garages</title>
+    <%- include('../partials/header')%>
+</head>
+<body>
+    <%- include('../partials/alerts')%>
+    <h1>All Garages</h1>
+    <div class="container">
+        <% for (var garage of garages)  {%>
+            Name-<%=garage.name%><br>
+            Location-<%=garage.location%><br>
+            Location Category-<%=garage.location_cat%><br>
+            Size-<%=garage.size%><br>
+            Owner-<%=garage.owner%><br>
+            <hr>
+            <% }%>
+    </form>
+    </div>
+</body>
+</html>
