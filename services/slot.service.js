@@ -1,5 +1,6 @@
 const Slot = require('../models/slot.model');
 const Garage=require('../models/garage.model');
+const Booking=require('../models/booking.model');
 
 const AddSlot = async (slotBody) => {
     try {
@@ -31,6 +32,11 @@ const DeleteSlot=async(id)=>
     try
     {
         const slot=await Slot.findById(id);
+        if(!slot)throw "Slot Not FOund!";
+        for(let booking_id of slot.bookings)
+        {
+            await Booking.findByIdAndDelete(booking_id);
+        }
         await Garage.findByIdAndUpdate(slot.garage_id, { $pull: { slots: id } });
         await Slot.findByIdAndDelete(id);
     }

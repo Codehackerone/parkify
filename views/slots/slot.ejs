@@ -23,6 +23,9 @@
                 No Bookings Found!
             <%} %>
             <a href="/booking/new/<%=slot._id%>"><button>Book Slot</button></a>
+            <form action="/slot/<%=slot._id%>?_method=DELETE" method="POST">
+                <button type="submit">Delete</button>
+            </form>
     </form>
     </div>
 </body>
