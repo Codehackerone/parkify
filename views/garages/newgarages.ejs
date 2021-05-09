@@ -10,15 +10,16 @@
     <h1>New Garages</h1>
     <div class="container">
     <form action="/garage/add" method="POST">
-        <input type="text" required name="name" placeholder="Name">
-        <input type="text" required name="location" placeholder="Location">
+        <input type="text" required name="name" placeholder="Name"><br>
+        <input type="text" required name="location" placeholder="Location"><br>
         <select required name="location_cat" placeholder="Location Category">
-            <option value="">Choose...</option>
+            <option value="">Location Category</option>
             <option value="nice">Nice</option>
             <option value="outskirts">Outskirts</option>
             <option value="prime">Prime</option>
-        </select>
-        <input type="text" required name="owner" placeholder="Owner">
+        </select><br>
+        <input type="text" required name="owner" placeholder="Owner"><br>
+        <input type="text" required name="size" placeholder="Size"><br>
         <button type="submit">Submit</button>
     </form>
     </div>
