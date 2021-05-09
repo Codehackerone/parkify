@@ -73,9 +73,23 @@ const apiMoney=async(slot_id)=>
     }
 }
 
+const FindByUser=async(id)=>
+{
+    try
+    {
+        var bookings=await Booking.find({user_id:id});
+        return bookings;
+    }
+    catch(err)
+    {
+        res.send('Error');
+    }
+}
+
 module.exports={
     NewBooking,
     FindBooking,
     DeleteBooking,
-    apiMoney
+    apiMoney,
+    FindByUser
 }

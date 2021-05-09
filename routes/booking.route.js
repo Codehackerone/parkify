@@ -6,7 +6,7 @@ const sanitizerMiddleware=require('../middleware/sanitizer.middleware');
 
 Router.route('/new/:id')
     .get(IsLoggedInMiddleware(),bookingController.renderNewBooking)
-    .post(IsLoggedInMiddleware(),sanitizerMiddleware(),bookingController.newBooking);
+    .post(IsLoggedInMiddleware(),bookingController.newBooking);
     
 Router.route('/:id')
     .get(IsLoggedInMiddleware(),bookingController.renderBooking)

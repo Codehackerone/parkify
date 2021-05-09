@@ -1,4 +1,5 @@
 const userService = require('../services/user.service');
+const bookingService=require('../services/booking.service');
 const jwt = require('jsonwebtoken');
 
 let options = {
@@ -20,9 +21,10 @@ const renderRegister = (req, res) => {
 const renderLogin = (req, res) => {
     res.render('users/login');
 };
-const renderDashboard=(req,res)=>
+const renderDashboard=async(req,res)=>
 {
-    res.render('users/dashboard', {body: req.body});
+    var bookings=await bookingService.FindByUser(req.body.user_id);
+    res.render('users/dashboard', {body: req.body,bookings:bookings});
 }
 const renderAddMoney=(req,res)=>
 {

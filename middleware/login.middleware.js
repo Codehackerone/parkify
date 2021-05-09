@@ -31,7 +31,7 @@ const IsLoggedInMiddleware = () => {
                     req.body.username = user.username;
                     req.body.picture_url=user.picture_url;
                     req.body.money=user.money;
-                    req.body.type=user.type;
+                    req.body.user_type=user.type;
                     next();
                 }
             } catch (error) {

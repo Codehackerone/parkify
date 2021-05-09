@@ -18,5 +18,12 @@
     <button type="submit">Logout</button>
   </form>
   <h3><a href="changeimage"><button>Click to change image</button></a></h3>
+  <hr>
+  <% for(let booking of bookings){%>
+    <b>Status</b>-<%=booking.status%><br>
+    <b>Start Time</b>-<%=new Date(booking.start_time*1000)%><br>
+    <b>End Time</b>-<%=new Date(booking.end_time*1000)%><br>
+    <button>Cancel Booking</button>
+  <% }%>
 </body>
 </html>

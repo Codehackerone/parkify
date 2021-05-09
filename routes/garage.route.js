@@ -13,7 +13,7 @@ Router.route('/')
 
 Router.route('/add')
     .get(IsLoggedInMiddleware(),IsAdminMiddleware(),garageController.renderAddGarage)
-    .post(IsLoggedInMiddleware(),IsAdminMiddleware(),sanitizerMiddleware(),upload.single('image'),garageController.addGarage)
+    .post(IsLoggedInMiddleware(),IsAdminMiddleware(),upload.single('image'),garageController.addGarage)
 
 Router.route('/:id')
     .get(IsLoggedInMiddleware(),garageController.renderGarage)

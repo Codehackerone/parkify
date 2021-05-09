@@ -7,7 +7,7 @@ const IsAdminMiddleware=require('../middleware/isadmin.middleware');
 
 Router.route('/add/:id')
     .get(IsLoggedInMiddleware(),IsAdminMiddleware(),slotController.renderAddSlot)
-    .post(IsLoggedInMiddleware(),IsAdminMiddleware(),sanitizerMiddleware(),slotController.addSlot)
+    .post(IsLoggedInMiddleware(),IsAdminMiddleware(),slotController.addSlot)
 
 Router.route('/:id')
     .get(IsLoggedInMiddleware(),slotController.renderSlot)
