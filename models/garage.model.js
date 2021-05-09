@@ -34,6 +34,11 @@ const garageSchema = new Schema(
                 required: true
             }
         },
+        picture_url:
+        {
+            type:String,
+            default:'https://res.cloudinary.com/codehackerone/image/upload/v1620559724/Parkify/garagepic_bnozdl.jpg',
+        },
         slots:[
             {
                 type:Schema.Types.ObjectId,
