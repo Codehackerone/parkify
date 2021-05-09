@@ -15,7 +15,8 @@ Router.route('/add')
     .post(upload.single('image'),garageController.addGarage)
 
 Router.route('/:id')
-    .get(garageController.renderGarage);
+    .get(garageController.renderGarage)
+    .delete(garageController.deleteGarage);
 
 Router.route('/apislot/:id')
     .get(garageController.apiSlotInfo);

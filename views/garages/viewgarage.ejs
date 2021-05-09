@@ -8,6 +8,7 @@
     <%- include('../partials/alerts')%>
     <h1>Garage <%=garage.name%></h1>
     <div id='map' style="width: 400px; height: 300px;"></div>
+    <img src="<%=garage.picture_url%>" style="width: 400px; height: 300px;">
     <div class="container">
             Name-<%=garage.name%><br>
             Location-<%=garage.location%><br>
@@ -17,6 +18,7 @@
             Number of Slots-<%=garage.slots.length%>
     </form>
     </div>
+    <a href="/"><button>Delete</button></a>
 </body>
 </html>
 <script>
@@ -30,5 +32,11 @@ mapboxgl.accessToken = '<%=maptoken%>';
     });
 var marker=new mapboxgl.Marker()
     .setLngLat(garage.geometry.coordinates)
+    .setPopup(
+        new mapboxgl.Popup({offset:25})
+        .setHTML(
+            `<h3>${garage.name}</h3><p>${garage.location}`
+        )
+    )
     .addTo(map);
 </script>

@@ -66,10 +66,21 @@ const apiSlotInfo=async(req,res)=>
     res.send(str);
 }
 
+const deleteGarage=async(req,res)=>
+{
+    try{
+        var id=req.params.id;
+        await garageService.DeleteGarage(id);
+    }
+    catch(err){
+        res.send(err);
+    }
+}
 module.exports={
 renderAddGarage,
 addGarage,
 renderGarage,
 renderAllGarages,
-apiSlotInfo
+apiSlotInfo,
+deleteGarage
 };
