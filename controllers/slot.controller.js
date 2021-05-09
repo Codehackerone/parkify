@@ -1,5 +1,6 @@
 const slotService = require('../services/slot.service');
 const garageService=require('../services/garage.service');
+const bookingService=require('../services/booking.service');
 
 const renderAddSlot = (req, res) => {
     res.send('Add Slot');
@@ -54,10 +55,25 @@ const renderSlots=async(req,res)=>
     res.render('slots/allslots',{garage:garage,slots:arr_slot});
 }
 
+const apiBooking=async(req,res)=>
+{
+    var slot_id=req.params.id;
+    var slot=await slotService.FindSlot(slot_id);
+    if(!slot)return "Slot Not Found";
+    var bookings=slot.bookings;
+    var arr_booking=[]
+    for(var booking of bookings)
+    {
+        var booking_det=await bookingService.FindBooking(booking);
+        arr_booking.push(`${parseInt(booking_det.start_time)}-${parseInt(booking_det.end_time)}`);
+    }
+    res.send(arr_booking);
+}
 module.exports={
     renderAddSlot,
     addSlot,
     renderSlot,
     deleteSlot,
-    renderSlots
+    renderSlots,
+    apiBooking
 };

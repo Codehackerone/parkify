@@ -14,5 +14,8 @@ Router.route('/:id')
 
 Router.route('/garage/:id')
     .get(slotController.renderSlots);
+
+Router.route('/apibooking/:id')
+    .get(slotController.apiBooking);
     
 module.exports=Router;
