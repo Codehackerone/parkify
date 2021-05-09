@@ -8,8 +8,11 @@
 <body>
     <%- include('../partials/alerts')%>
     <h1>All Garages</h1>
+    <div id="cluster-map"></div>
+    <hr>
     <div class="container">
         <% for (var garage of garages)  {%>
+            <img src="<%=garage.picture_url%>" style="height:200px;width:200px;"><br>
             Name-<%=garage.name%><br>
             Location-<%=garage.location%><br>
             Location Category-<%=garage.location_cat%><br>
@@ -23,3 +26,19 @@
     </div>
 </body>
 </html>
+<script>
+    const garage_raw='<%-JSON.stringify(garages) %>';
+    const mapboxtoken='<%=maptoken%>';
+</script>
+<script src="/js/clustermap.js"></script>
+<style>
+#cluster-map {
+    width: 100%;
+    height: 500px;
+}
+
+#map {
+    width: 100%;
+    height: 500px;
+}
+</style>

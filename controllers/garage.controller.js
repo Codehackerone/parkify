@@ -40,7 +40,7 @@ const renderGarage = async (req, res) => {
 
 const renderAllGarages=async(req,res)=>{
     var garages=await garageService.AllGarages();
-    res.render('garages/allgarages',{garages:garages});
+    res.render('garages/allgarages',{garages:garages,maptoken:mapBoxToken});
 }
 
 const apiSlotInfo=async(req,res)=>
