@@ -47,10 +47,9 @@ const garageSchema = new Schema(
         ]
     },
     {
-        timestamps: true,
+        timestamps: true
     }
 );
-
 let Garage = mongoose.model('Garage', garageSchema);
 
 module.exports = Garage;
