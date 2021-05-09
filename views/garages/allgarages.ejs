@@ -13,8 +13,10 @@
             Name-<%=garage.name%><br>
             Location-<%=garage.location%><br>
             Location Category-<%=garage.location_cat%><br>
-            Number of Slots-<%=garage.slots.length%>(<span id="<%=garage._id%>"></span>)
+            Number of Slots-<%=garage.slots.length%>(<span id="<%=garage._id%>"></span>)<br>
             <script>getSlotInfo('<%=garage._id%>')</script>
+            <a href="/garage/<%=garage._id%>"><button>View Garage</button></a>
+            <a href="/slot/garage/<%=garage._id%>"><button>View Slots</button></a>
             <hr>
             <% }%>
     </form>

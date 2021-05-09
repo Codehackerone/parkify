@@ -34,7 +34,7 @@ const apiSlotInfo=async(req,res)=>
 {
     var garage_id=req.params.id;
     var garage=await garageService.FindGarage(garage_id);
-    if(!garage)return "Not Found";
+    if(!garage)return "Garage Not Found";
     var slots=garage.slots;
     var arr_slot=[]
     var large=0,medium=0,small=0;

@@ -11,5 +11,8 @@ Router.route('/add')
 Router.route('/:id')
     .get(slotController.renderSlot)
     .delete(slotController.deleteSlot)
+
+Router.route('/garage/:id')
+    .get(slotController.renderSlots);
     
 module.exports=Router;

@@ -1,4 +1,5 @@
 const slotService = require('../services/slot.service');
+const garageService=require('../services/garage.service');
 
 const renderAddSlot = (req, res) => {
     res.send('Add Slot');
@@ -38,9 +39,25 @@ const deleteSlot=async(req,res)=>
     }
 }
 
+const renderSlots=async(req,res)=>
+{
+    var garage_id=req.params.id;
+    var garage=await garageService.FindGarage(garage_id);
+    if(!garage)return "Garage Not Found";
+    var slots=garage.slots;
+    var arr_slot=[]
+    for(var slot of slots)
+    {
+        var slot_det=await slotService.FindSlot(slot);
+        arr_slot.push(slot_det);
+    }
+    res.send(arr_slot);
+}
+
 module.exports={
     renderAddSlot,
     addSlot,
     renderSlot,
-    deleteSlot
+    deleteSlot,
+    renderSlots
 };
