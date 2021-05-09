@@ -51,7 +51,7 @@ const renderSlots=async(req,res)=>
         var slot_det=await slotService.FindSlot(slot);
         arr_slot.push(slot_det);
     }
-    res.send(arr_slot);
+    res.render('slots/allslots',{garage:garage,slots:arr_slot});
 }
 
 module.exports={
