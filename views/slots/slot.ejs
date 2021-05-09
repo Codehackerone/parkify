@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>All Slots </title>
+    <title>Slot</title>
     <%- include('../partials/header')%>
 </head>
 <body>
     <%- include('../partials/alerts')%>
-    <h1>All Slots for <%=garage.name%></h1>
+    <h1>Slot <%=slot.name%></h1>
     <div class="container">
-        <% for (var slot of slots)  {%>
             Name-<%=slot.name%><br>
             Type-<%=slot.type%><br>
             Price/Minute-<%=slot.price%><br>
-            <a href="/slot/<%=slot._id%>"><button>View Slot</button></a>
             <hr>
-            <% }%>
     </form>
     </div>
 </body>

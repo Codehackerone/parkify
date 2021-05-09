@@ -21,7 +21,7 @@ const renderSlot = async (req, res) => {
     if (!slot) {
         res.send('Slot Not Found.');
     } else {
-        res.send(slot);
+        res.render('slots/slot',{slot:slot});
     }
 };
 
