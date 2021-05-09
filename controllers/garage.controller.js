@@ -2,7 +2,7 @@ const garageService = require('../services/garage.service');
 const slotService=require('../services/slot.service');
 
 const renderAddGarage = (req, res) => {
-    res.send('Add Garage');
+    res.render('garages/newgarages');
 };
 
 const addGarage=async (req,res)=>

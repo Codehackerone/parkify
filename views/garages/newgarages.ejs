@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>New Garages</title>
+    <%- include('../partials/header')%>
+    <script src="/js/allgarage.js"></script>
+</head>
+<body>
+    <%- include('../partials/alerts')%>
+    <h1>New Garages</h1>
+    <div class="container">
+    <form action="/garage/add" method="POST">
+        <input type="text" required name="name" placeholder="Name">
+        <input type="text" required name="location" placeholder="Location">
+        <select required name="location_cat" placeholder="Location Category">
+            <option value="">Choose...</option>
+            <option value="nice">Nice</option>
+            <option value="outskirts">Outskirts</option>
+            <option value="prime">Prime</option>
+        </select>
+        <input type="text" required name="owner" placeholder="Owner">
+        <button type="submit">Submit</button>
+    </form>
+    </div>
+</body>
+</html>
