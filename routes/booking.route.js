@@ -4,7 +4,7 @@ const bookingController = require('../controllers/booking.controller');
 const IsLoggedInMiddleware=require('../middleware/login.middleware');
 const sanitizerMiddleware=require('../middleware/sanitizer.middleware');
 
-Router.route('/new')
+Router.route('/new/:id')
     .get(IsLoggedInMiddleware(),bookingController.renderNewBooking)
     .post(bookingController.newBooking);
     

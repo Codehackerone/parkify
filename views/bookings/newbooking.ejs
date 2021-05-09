@@ -8,8 +8,8 @@
     <%- include('../partials/alerts')%>
     <div class="container">
         <h1>New Booking</h1>
-    <form action="/booking/new" method="POST">
-        <input type="text" name="slot_id" required placeholder="Slot ID"><br>
+    <form action="/booking/new/<%=slot_id%>" method="POST">
+        <input type="text" name="slot_id" required placeholder="Slot ID" value="<%=slot_id%>"><br>
         <input type="text" name="user_id" required value="<%=userid%>" placeholder="User ID"><br>
         <input type="datetime-local" name="start_datetime" required placeholder="Start Date" min="Date()" max="Date()"><br>
         <input type="datetime-local" name="end_datetime" required placeholder="End Date" min="Date()" max="Date()"><br>

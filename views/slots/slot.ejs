@@ -12,15 +12,17 @@
             Type-<%=slot.type%><br>
             Price/Minute-<%=slot.price%><br>
             Bookings-
-            <ul>
+            
 
-            <% if(bookings!==[]){%>
+            <% if(bookings.length!==0){%>
+                <ul>
                 <%for(let booking of bookings){%>
                 <li><%=booking.start_time%> - <%=booking.end_time%> </li>
-                <% }} else{%>
-                    No Bookings Found!
-                <%} %>
-            </ul>
+            <% }%>            </ul> 
+            <% }else{%>
+                No Bookings Found!
+            <%} %>
+            <a href="/booking/new/<%=slot._id%>"><button>Book Slot</button></a>
     </form>
     </div>
 </body>
