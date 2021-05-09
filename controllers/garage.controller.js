@@ -30,7 +30,7 @@ const renderGarage = async (req, res) => {
     if (!garage) {
         res.send('Garage Not Found.');
     } else {
-        res.render('garages/viewgarage',{garage:garage});
+        res.render('garages/viewgarage',{garage:garage,maptoken:mapBoxToken});
     }
 };
 
