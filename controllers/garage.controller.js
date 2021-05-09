@@ -71,6 +71,7 @@ const deleteGarage=async(req,res)=>
     try{
         var id=req.params.id;
         await garageService.DeleteGarage(id);
+        res.send('Deleted Successfully');
     }
     catch(err){
         res.send(err);

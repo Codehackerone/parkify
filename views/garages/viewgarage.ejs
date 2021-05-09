@@ -18,25 +18,13 @@
             Number of Slots-<%=garage.slots.length%>
     </form>
     </div>
-    <a href="/"><button>Delete</button></a>
+    <form action="/garage/<%=garage._id%>?_method=DELETE" method="POST">
+        <button type="submit">Delete</button>
+    </form>
 </body>
 </html>
 <script>
-var garage=JSON.parse('<%-JSON.stringify(garage) %>');
-mapboxgl.accessToken = '<%=maptoken%>';
-    var map = new mapboxgl.Map({
-    container: 'map', 
-    style: 'mapbox://styles/mapbox/streets-v11', 
-    center: garage.geometry.coordinates, 
-    zoom: 9 
-    });
-var marker=new mapboxgl.Marker()
-    .setLngLat(garage.geometry.coordinates)
-    .setPopup(
-        new mapboxgl.Popup({offset:25})
-        .setHTML(
-            `<h3>${garage.name}</h3><p>${garage.location}`
-        )
-    )
-    .addTo(map);
+    const garage_raw='<%-JSON.stringify(garage) %>';
+    const mapboxtoken='<%=maptoken%>';
 </script>
+<script src="/js/viewgarage.js"></script>
