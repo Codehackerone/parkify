@@ -6,17 +6,18 @@ const upload = multer({ storage });
 const garageController = require('../controllers/garage.controller');
 const IsLoggedInMiddleware=require('../middleware/login.middleware');
 const sanitizerMiddleware=require('../middleware/sanitizer.middleware');
+const IsAdminMiddleware=require('../middleware/isadmin.middleware');
 
 Router.route('/')
-    .get(garageController.renderAllGarages)
+    .get(IsLoggedInMiddleware(),garageController.renderAllGarages)
 
 Router.route('/add')
-    .get(garageController.renderAddGarage)
-    .post(upload.single('image'),garageController.addGarage)
+    .get(IsLoggedInMiddleware(),IsAdminMiddleware(),garageController.renderAddGarage)
+    .post(IsLoggedInMiddleware(),IsAdminMiddleware(),sanitizerMiddleware(),upload.single('image'),garageController.addGarage)
 
 Router.route('/:id')
-    .get(garageController.renderGarage)
-    .delete(garageController.deleteGarage);
+    .get(IsLoggedInMiddleware(),garageController.renderGarage)
+    .delete(IsLoggedInMiddleware(),IsAdminMiddleware(),garageController.deleteGarage);
 
 Router.route('/apislot/:id')
     .get(garageController.apiSlotInfo);

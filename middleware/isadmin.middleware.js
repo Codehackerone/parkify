@@ -2,7 +2,7 @@ const IsAdminMiddleware = () => {
     return async (req, res, next) => {
         try
         {
-            if(req.user.type!=="Admin")
+            if(req.body.type!=="admin")
             {
                 res.send('Permission Denied');
             }

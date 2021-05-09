@@ -6,10 +6,10 @@ const sanitizerMiddleware=require('../middleware/sanitizer.middleware');
 
 Router.route('/new/:id')
     .get(IsLoggedInMiddleware(),bookingController.renderNewBooking)
-    .post(bookingController.newBooking);
+    .post(IsLoggedInMiddleware(),sanitizerMiddleware(),bookingController.newBooking);
     
 Router.route('/:id')
-    .get(bookingController.renderBooking)
-    .delete(bookingController.deleteBooking)
+    .get(IsLoggedInMiddleware(),bookingController.renderBooking)
+    .delete(IsLoggedInMiddleware(),bookingController.deleteBooking)
 
 module.exports=Router;
