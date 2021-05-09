@@ -3,7 +3,8 @@ const garageService=require('../services/garage.service');
 const bookingService=require('../services/booking.service');
 
 const renderAddSlot = (req, res) => {
-    res.send('Add Slot');
+    var garage_id=req.params.id;
+    res.render('slots/addslot',{garage_id:garage_id});
 };
 
 const addSlot=async (req,res)=>

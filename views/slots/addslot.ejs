@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>New Slots</title>
+    <%- include('../partials/header')%>
+</head>
+<body>
+    <%- include('../partials/alerts')%>
+    <h1>New Slots</h1>
+    <div class="container">
+    <form action="/slot/add/<%=garage_id%>" method="POST">
+        <input type="text" required name="garage_id" value="<%=garage_id%>" placeholder="Garage ID"><br>
+        <input type="text" required name="name" placeholder="Name"><br>
+        <select required name="type" placeholder="Location Category">
+            <option value="">Type of Cars that can fit.</option>
+            <option value="Large">large</option>
+            <option value="Medium">Medium</option>
+            <option value="Small">Small</option>
+        </select><br>
+        <input type="number" step="0.01"required name="price" placeholder="Price/Min"><br>
+        <button type="submit">Submit</button>
+    </form>
+    </div>
+</body>
+</html>

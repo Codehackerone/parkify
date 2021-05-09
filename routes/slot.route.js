@@ -4,7 +4,7 @@ const slotController = require('../controllers/slot.controller');
 const IsLoggedInMiddleware=require('../middleware/login.middleware');
 const sanitizerMiddleware=require('../middleware/sanitizer.middleware');
 
-Router.route('/add')
+Router.route('/add/:id')
     .get(slotController.renderAddSlot)
     .post(slotController.addSlot)
 
