@@ -12,13 +12,15 @@ const renderAddGarage = (req, res) => {
 const addGarage=async (req,res)=>
 {
     try {
-        //var path = req.file['path'];
+        if(req.file){
+        var path = req.file.path;
+        req.body.picture_url=path;
+        }
         const geoData = await geocoder.forwardGeocode({
             query: req.body.location,
             limit: 1
         }).send();
         req.body.geometry = geoData.body.features[0].geometry;
-        // req.body.picture_url=path;
         const result = await garageService.AddGarage(req.body);
         res.send(result);
     } catch (err) {

@@ -12,7 +12,7 @@ Router.route('/')
 
 Router.route('/add')
     .get(garageController.renderAddGarage)
-    .post(garageController.addGarage)
+    .post(upload.single('image'),garageController.addGarage)
 
 Router.route('/:id')
     .get(garageController.renderGarage);
