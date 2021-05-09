@@ -1,5 +1,9 @@
 const garageService = require('../services/garage.service');
 const slotService=require('../services/slot.service');
+const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
+const mapBoxToken = process.env.MAPBOX_TOKEN;
+const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
+
 
 const renderAddGarage = (req, res) => {
     res.render('garages/newgarages');
@@ -8,6 +12,11 @@ const renderAddGarage = (req, res) => {
 const addGarage=async (req,res)=>
 {
     try {
+        const geoData = await geocoder.forwardGeocode({
+            query: req.body.location,
+            limit: 1
+        }).send();
+        req.body.geometry = geoData.body.features[0].geometry;
         const result = await garageService.AddGarage(req.body);
         res.send(result);
     } catch (err) {
