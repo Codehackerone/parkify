@@ -10,7 +10,7 @@ const AddGarage = async (garageBody) => {
 
 const FindGarage = async (id) => {
     try{
-        const garage = await Garage.findOne({ _id: id });
+        const garage = await Garage.findById(id);
         return garage;
         }
         catch(err)

@@ -40,8 +40,8 @@ const apiSlotInfo=async(req,res)=>
     var large=0,medium=0,small=0;
     for(var slot of slots)
     {
-        var slot_size=await slotService.FindSlot(slot).type;
-        arr_slot.push(slot_size);
+        var slot_size=await slotService.FindSlot(slot);
+        arr_slot.push(slot_size.type);
     }
     for(var size of arr_slot)
     {
