@@ -22,7 +22,8 @@ const renderSlot = async (req, res) => {
     if (!slot) {
         res.send('Slot Not Found.');
     } else {
-        res.render('slots/slot',{slot:slot});
+        var bookings=await findBookings(slot._id);
+        res.render('slots/slot',{slot:slot,bookings:bookings});
     }
 };
 
@@ -55,18 +56,24 @@ const renderSlots=async(req,res)=>
     res.render('slots/allslots',{garage:garage,slots:arr_slot});
 }
 
-const apiBooking=async(req,res)=>
+const findBookings=async(id)=>
 {
-    var slot_id=req.params.id;
-    var slot=await slotService.FindSlot(slot_id);
+    var slot=await slotService.FindSlot(id);
     if(!slot)return "Slot Not Found";
     var bookings=slot.bookings;
     var arr_booking=[]
     for(var booking of bookings)
     {
         var booking_det=await bookingService.FindBooking(booking);
-        arr_booking.push(`${parseInt(booking_det.start_time)}-${parseInt(booking_det.end_time)}`);
+        arr_booking.push(booking_det);
     }
+    return arr_booking;
+}
+
+const apiBooking=async(req,res)=>
+{
+    var slot_id=req.params.id;
+    var arr_booking=await findBookings(slot_id);
     res.send(arr_booking);
 }
 module.exports={
@@ -75,5 +82,6 @@ module.exports={
     renderSlot,
     deleteSlot,
     renderSlots,
-    apiBooking
+    apiBooking,
+    findBookings
 };
