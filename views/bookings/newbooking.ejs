@@ -11,10 +11,34 @@
     <form action="/booking/new/<%=slot_id%>" method="POST">
         <input type="text" name="slot_id" required placeholder="Slot ID" value="<%=slot_id%>"><br>
         <input type="text" name="user_id" required value="<%=userid%>" placeholder="User ID"><br>
-        <input type="datetime-local" name="start_datetime" required placeholder="Start Date" min="Date()" max="Date()"><br>
-        <input type="datetime-local" name="end_datetime" required placeholder="End Date" min="Date()" max="Date()"><br>
+        <input type="datetime-local" name="start_datetime" id="start_time" required placeholder="Start Date" ><br>
+        <input type="datetime-local" name="end_datetime" id="end_time" required placeholder="End Date" ><br>
         <button type="submit">Submit</button>
     </form>
     </div>
 </body>
 </html>
+<script>
+function add_zeroes(num){
+    if(num<10)return "0"+num;
+    else return num;
+}
+var epoch1=new Date().getTime();
+var year1=new Date(epoch1).getFullYear();
+var month1=new Date(epoch1).getMonth()+1;
+var day1=new Date(epoch1).getDate();
+var hour1=new Date(epoch1).getHours();
+var minutes1=new Date(epoch1).getMinutes();
+var mindate=year1+"-"+add_zeroes(month1)+"-"+add_zeroes(day1)+"T"+add_zeroes(hour1)+":"+add_zeroes(minutes1);
+epoch2=epoch1+86400000*30;
+var year1=new Date(epoch2).getFullYear();
+var month1=new Date(epoch2).getMonth()+1;
+var day1=new Date(epoch2).getDate();
+var hour1=new Date(epoch2).getHours();
+var minutes1=new Date(epoch2).getMinutes();
+var maxdate=year1+"-"+add_zeroes(month1)+"-"+add_zeroes(day1)+"T"+add_zeroes(hour1)+":"+add_zeroes(minutes1);
+document.getElementById('start_time').max=maxdate;
+document.getElementById('start_time').min=mindate;
+document.getElementById('end_time').max=maxdate;
+document.getElementById('end_time').min=mindate;
+</script>
