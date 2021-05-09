@@ -6,11 +6,15 @@ const sanitizerMiddleware=require('../middleware/sanitizer.middleware');
 
 Router.route('/')
     .get(garageController.renderAllGarages)
+
 Router.route('/add')
     .get(garageController.renderAddGarage)
     .post(garageController.addGarage)
 
 Router.route('/:id')
     .get(garageController.renderGarage);
+
+Router.route('/apislot/:id')
+    .get(garageController.apiSlotInfo);
 
 module.exports=Router;

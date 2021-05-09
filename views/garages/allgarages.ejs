@@ -3,6 +3,7 @@
 <head>
     <title>All Garages</title>
     <%- include('../partials/header')%>
+    <script src="/js/allgarage.js"></script>
 </head>
 <body>
     <%- include('../partials/alerts')%>
@@ -12,9 +13,8 @@
             Name-<%=garage.name%><br>
             Location-<%=garage.location%><br>
             Location Category-<%=garage.location_cat%><br>
-            Size-<%=garage.size%><br>
-            Owner-<%=garage.owner%><br>
-            Number of Slots-<%=garage.slots.length%>
+            Number of Slots-<%=garage.slots.length%>(<span id="<%=garage._id%>"></span>)
+            <script>getSlotInfo('<%=garage._id%>')</script>
             <hr>
             <% }%>
     </form>
