@@ -11,9 +11,11 @@ const addSlot=async (req,res)=>
 {
     try {
         const result = await slotService.AddSlot(req.body);
-        res.send(result);
+        req.flash('success','Slot Added Successfully');
+        res.redirect('/garage/'+result.garage_id);
     } catch (err) {
-        res.send(err);
+        req.flash('err','Error :'+err);
+        res.redirect('/garage/'+req.body.garage_id);
     }
 }
 
@@ -21,7 +23,8 @@ const renderSlot = async (req, res) => {
     var slot_id = req.params.id;
     const slot = await slotService.FindSlot(slot_id);
     if (!slot) {
-        res.send('Slot Not Found.');
+        req.flash('err','Slot Not Found');
+        res.redirect('/garage/');
     } else {
         var bookings=await findBookings(slot._id);
         res.render('slots/slot',{slot:slot,bookings:bookings});
@@ -38,7 +41,8 @@ const deleteSlot=async(req,res)=>
     }
     catch(err)
     {
-        res.send(err);
+        req.flash('err','Error :'+err);
+        res.redirect('/garage/');
     }
 }
 
@@ -46,7 +50,11 @@ const renderSlots=async(req,res)=>
 {
     var garage_id=req.params.id;
     var garage=await garageService.FindGarage(garage_id);
-    if(!garage)return "Garage Not Found";
+    if(!garage)
+    {
+        req.flash('err','Garage Not Found!');
+        res.redirect('/garage/');
+    }
     var slots=garage.slots;
     var arr_slot=[]
     for(var slot of slots)

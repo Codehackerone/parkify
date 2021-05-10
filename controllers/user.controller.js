@@ -48,9 +48,11 @@ const register=async (req,res)=>
     try {
         const result = await userService.Register(req.body);
         res.cookie('isloggedin', result.token, options);
-        res.send(result.user);
+        req.flash('alert','Registered Successfully. Please Verify your Email.');
+        res.redirect('/users/verify');
     } catch (err) {
-        res.send(err);
+        req.flash('err','Error :'+err);
+        res.redirect('/user/register');
     }
 }
 
@@ -72,16 +74,18 @@ const login = async (req, res) => {
             req.body.username,
             req.body.password
         );
-        res.cookie('isloggedin', result.token, options);
-        res.send(result);
+        req.flash('success','Logged in Successfully.');
+        res.redirect('/users/dashboard');
     } catch (err) {
-        res.send(err);
+        req.flash('err','Error :'+err);
+        res.redirect('/user/login');
     }
 };
 
 const logout = (req, res) => {
     res.clearCookie('isloggedin');
-    res.status(200).send('Logged Out');
+    req.flash('success','Logged out Successfully.');
+    res.redirect('/');
 };
 
 const verify=async(req,res)=>
@@ -115,9 +119,11 @@ const uploadImage = async (req, res) => {
     console.log(path+" "+userid);
     try {
         await userService.updateImage(userid, path);
-        res.status(200).send('Image Uploaded Successfully');
+        req.flash('success','Image Uploaded Successfully');
+        res.redirect('/users/dashboard');
     } catch (err) {
-        res.status(500).send('Error');
+        req.flash('err','Error :'+err);
+        res.redirect('/users/changeimage');
     }
 };
 
@@ -126,11 +132,13 @@ const addMoney=async (req,res)=>
     var add_money=req.body.added_money;
     try{
         await userService.addMoney(req.body.user_id,add_money);
-        res.send('Money Added Successfully');
+        req.flash('success','Money Added Successfully');
+        res.redirect('/users/dashboard');
     }
     catch(err)
     {
-        res.send(err);
+        req.flash('err','Error :'+err);
+        res.redirect('/users/addmoney');
     }
 }
 

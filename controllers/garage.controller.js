@@ -22,9 +22,11 @@ const addGarage=async (req,res)=>
         }).send();
         req.body.geometry = geoData.body.features[0].geometry;
         const result = await garageService.AddGarage(req.body);
-        res.send(result);
+        req.flash('success','Garage Added Successfully');
+        res.redirect('/garage/');
     } catch (err) {
-        res.send(err);
+        req.flash('err','Error :'+err);
+        res.redirect('/garage/add');
     }
 }
 
@@ -32,7 +34,8 @@ const renderGarage = async (req, res) => {
     var garage_id = req.params.id;
     const garage = await garageService.FindGarage(garage_id);
     if (!garage) {
-        res.send('Garage Not Found.');
+        req.flash('err','Error :Garage Not Found!');
+        res.redirect('/garage/');
     } else {
         res.render('garages/viewgarage',{garage:garage,maptoken:mapBoxToken});
     }
@@ -71,10 +74,12 @@ const deleteGarage=async(req,res)=>
     try{
         var id=req.params.id;
         await garageService.DeleteGarage(id);
-        res.send('Deleted Successfully');
+        req.flash('success','Garage Deleted Successfully');
+        res.redirect('/garage/');
     }
     catch(err){
-        res.send(err);
+        req.flash('err','Error :'+err);
+        res.redirect('/garage/');
     }
 }
 module.exports={
