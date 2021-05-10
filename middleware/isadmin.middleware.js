@@ -4,7 +4,8 @@ const IsAdminMiddleware = () => {
         {
             if(req.body.user_type!=="admin")
             {
-                res.send('Permission Denied');
+                req.flash('alert','Not Authorized. Not Allowed.');
+                res.redirect('/users/dashboard');
             }
             else{
                 next();

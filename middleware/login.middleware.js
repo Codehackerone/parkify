@@ -16,11 +16,13 @@ const IsLoggedInMiddleware = () => {
                 let user = await User.findOne({ username: decoded.username });
                 if (!user)
                 {
-                    res.send('User doesnt exist');
+                    req.flash('err','User Doesnt Exist');
+                    res.redirect('/');
                 }
                 else if(user.verified===false && req.url!="/verify")
                 {
-                    res.send('Not Verified. Verify First');
+                    req.flash('alert','Not Verified.');
+                    res.redirect('/users/verify');
                 }
                 else{
                     req.body.user_id=user._id;
