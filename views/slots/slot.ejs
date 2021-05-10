@@ -17,7 +17,7 @@
             <% if(bookings.length!==0){%>
                 <ul>
                 <%for(let booking of bookings){%>
-                <li><%=booking.start_time%> - <%=booking.end_time%> </li>
+                <li><%=new Date(booking.start_time*1000)%> - <%=new Date(booking.end_time*1000)%> </li>
             <% }%>            </ul> 
             <% }else{%>
                 No Bookings Found!
