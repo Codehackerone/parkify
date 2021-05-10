@@ -11,9 +11,11 @@ const newBooking=async(req,res)=>{
     req.body.amount=(await bookingService.apiMoney(req.body.slot_id))*((req.body.end_time-req.body.start_time)/60);
     try {
         const result = await bookingService.NewBooking(req.body);
-        res.send(result);
+        req.flash('success','Booking Created Successfully');
+        res.redirect('/users/dashboard');
     } catch (err) {
-        res.send(err);
+        req.flash('err',err);
+        res.redirect('/booking/new/'+req.body.slot_id);
     }
 }
 
@@ -22,9 +24,10 @@ const renderBooking=async(req,res)=>
     var booking_id = req.params.id;
     const booking = await bookingService.FindBooking(booking_id);
     if (!booking) {
-        res.status(404).send('Booking Not Found.');
+        req.flash('err','Booking Not Found');
+        res.redirect('/users/dashboard');
     } else {
-        res.status(200).send(booking);
+        res.send(booking);
     }
 }
 
@@ -33,11 +36,13 @@ const deleteBooking=async(req,res)=>
     var booking_id=req.params.id;
     try{
         await bookingService.DeleteBooking(booking_id);
-        res.send('Booking Deleted Successfully.')
+        req.flash('success','Booking Deleted Successfully');
+        res.redirect('/users/dashboard');
     }
     catch(err)
     {
-        res.send(err);
+        req.flash('err',"Error :"+err);
+        res.redirect('/users/dashboard');
     }
 }
 
