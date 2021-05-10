@@ -52,7 +52,7 @@ const register=async (req,res)=>
         res.redirect('/users/verify');
     } catch (err) {
         req.flash('err','Error :'+err);
-        res.redirect('/user/register');
+        res.redirect('/users/register');
     }
 }
 
@@ -78,7 +78,7 @@ const login = async (req, res) => {
         res.redirect('/users/dashboard');
     } catch (err) {
         req.flash('err','Error :'+err);
-        res.redirect('/user/login');
+        res.redirect('/users/login');
     }
 };
 
