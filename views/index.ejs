@@ -1,19 +1,48 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
-  <%- include('partials/header.ejs') %>  
-</head>
-<body>
-  
-<%- include('partials/alerts.ejs') %>  
-<h1>Index Page</h1>
-<ul>
-    <li><a href="/users/login">Login</a></li>
-    <li><a href="/users/register">Register</a></li>
-</ul>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <title>Welcome to Parkify</title>
+    <link href="/css/index.css" rel="stylesheet">
+  </head>
+  <body>
+    <%- include('partials/alerts.ejs') %>  
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent text-light">
+      <div class="container-fluid">
+        <a class="navbar-brand text-light" href="#">Logo</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link text-light" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" href="/garage/">Garages</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" href="/users/dashboard/">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" href="/users/login">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" href="/users/register">Register</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="huge">
+            PARKIFY
+        </h1>
+        <p class="fit">A simple way to end your complex parking issues.</p>
+    </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"crossorigin="anonymous"></script>
+  </body>
 </html>
