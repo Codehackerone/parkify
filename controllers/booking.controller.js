@@ -2,7 +2,7 @@ const bookingService = require('../services/booking.service');
 
 const renderNewBooking = (req, res) => {
     var slot_id=req.params.id;
-    res.render('bookings/newbooking',{userid:req.body.user_id,slot_id:slot_id});
+    res.render('bookings/newbooking',{userid:req.body.user_id,slot_id:slot_id,body: req.body});
 };
 
 const newBooking=async(req,res)=>{

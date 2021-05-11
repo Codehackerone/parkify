@@ -4,7 +4,7 @@ const bookingService=require('../services/booking.service');
 
 const renderAddSlot = (req, res) => {
     var garage_id=req.params.id;
-    res.render('slots/addslot',{garage_id:garage_id});
+    res.render('slots/addslot',{garage_id:garage_id,body: req.body});
 };
 
 const addSlot=async (req,res)=>
@@ -27,7 +27,7 @@ const renderSlot = async (req, res) => {
         res.redirect('/garage/');
     } else {
         var bookings=await findBookings(slot._id);
-        res.render('slots/slot',{slot:slot,bookings:bookings});
+        res.render('slots/slot',{slot:slot,bookings:bookings,body: req.body});
     }
 };
 
@@ -62,7 +62,7 @@ const renderSlots=async(req,res)=>
         var slot_det=await slotService.FindSlot(slot);
         arr_slot.push(slot_det);
     }
-    res.render('slots/allslots',{garage:garage,slots:arr_slot});
+    res.render('slots/allslots',{garage:garage,slots:arr_slot,body: req.body});
 }
 
 const findBookings=async(id)=>

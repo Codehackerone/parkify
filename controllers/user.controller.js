@@ -28,7 +28,7 @@ const renderDashboard=async(req,res)=>
 }
 const renderAddMoney=(req,res)=>
 {
-    res.render('users/addmoney',{money:req.body.money});
+    res.render('users/addmoney',{money:req.body.money,body: req.body});
 }
 const renderVerify=async(req,res)=>
 {
@@ -74,6 +74,7 @@ const login = async (req, res) => {
             req.body.username,
             req.body.password
         );
+        res.cookie('isloggedin', result.token, options);
         req.flash('success','Logged in Successfully.');
         res.redirect('/users/dashboard');
     } catch (err) {
@@ -110,7 +111,7 @@ const verify=async(req,res)=>
 }
 
 const renderImage = (req, res) => {
-    res.render('users/uploadimage');
+    res.render('users/uploadimage'),{body: req.body};
 };
 
 const uploadImage = async (req, res) => {

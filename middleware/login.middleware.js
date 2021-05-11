@@ -5,10 +5,15 @@ const IsLoggedInMiddleware = () => {
     return async (req, res, next) => {
         var cookie = JSON.parse(JSON.stringify(req.cookies));
         if (cookie['isloggedin'] === undefined) {
-            res.send('Not logged in.');
+            req.flash('err','Not Logged in. Please login to continue');
+            res.redirect('/users/login');
         } else {
             let token = req.cookies['isloggedin'];
-            if (!token) res.status(401).json('Not Logged In');
+            if (!token) 
+            {
+                req.flash('alert','Not Logged in. Please login to continue');
+                res.redirect('/users/login');
+            }
             try {
                 let decoded = jwt.verify(token, process.env.JWT_SECRET);
                 if (!decoded)

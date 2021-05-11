@@ -14,9 +14,6 @@
 <h3>Welcome <%=body.name%></h3>
 <h4>Money - Rs. <%=body.money%>. <a href="addmoney"><button>Add Money</button></a></h4>
 <img src="<%=body.picture_url%>" height="100" width="100"> 
-<form method="POST" action="/users/logout?_method=DELETE">
-    <button type="submit">Logout</button>
-  </form>
   <h3><a href="changeimage"><button>Click to change image</button></a></h3>
   <hr>
   <% for(let booking of bookings){%>

@@ -6,7 +6,7 @@ const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 
 
 const renderAddGarage = (req, res) => {
-    res.render('garages/newgarages');
+    res.render('garages/newgarages',{body: req.body});
 };
 
 const addGarage=async (req,res)=>
@@ -37,13 +37,13 @@ const renderGarage = async (req, res) => {
         req.flash('err','Error :Garage Not Found!');
         res.redirect('/garage/');
     } else {
-        res.render('garages/viewgarage',{garage:garage,maptoken:mapBoxToken});
+        res.render('garages/viewgarage',{garage:garage,maptoken:mapBoxToken,body: req.body});
     }
 };
 
 const renderAllGarages=async(req,res)=>{
     var garages=await garageService.AllGarages();
-    res.render('garages/allgarages',{garages:garages,maptoken:mapBoxToken});
+    res.render('garages/allgarages',{garages:garages,maptoken:mapBoxToken,body: req.body});
 }
 
 const apiSlotInfo=async(req,res)=>
