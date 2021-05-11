@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Update Image</title>
+    <title>Change Image</title>
     <%- include('../partials/header')%>
 </head>
 <body>
-    <%- include('../partials/navbar.ejs')%>
+    <%- include('../partials/navbar')%>
     <%- include('../partials/alerts')%>
     <div class="container">
-        <h1>Upload Image</h1>
+        <h1>Change Image</h1>
+        Current Image<br>
+        <img src="<%=body.picture_url%>" height="100" width="100"> 
+        <br><br><br>
     <form action="/users/changeimage" enctype="multipart/form-data" method="POST">
-        <input type="file" name="image" required>
-        <button type="submit">Submit</button>
+        <input class="form-control w-50"  type="file" name="image" required>
+        <br>
+        <button class="btn btn-primary" type="submit">Submit</button>
     </form>
     </div>
 </body>

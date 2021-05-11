@@ -25,12 +25,12 @@
               </form>
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#"><img src="<%=body.picture_url%>" class="img-fluid"
+              <a class="nav-link" aria-current="page" href="/users/changeimage"><img src="<%=body.picture_url%>" class="img-fluid"
                  style="height: 20px; width:20px; border: 1px solid white; border-radius: 50%;">
                 <%=body.username%></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#"><i class="fas fa-rupee-sign"></i>&nbsp;<%=Math.round(body.money*1000)/1000%></a>
+              <a class="nav-link" aria-current="page" href="/users/addmoney"><i class="fas fa-rupee-sign"></i>&nbsp;<%=Math.round(body.money*1000)/1000%></a>
             </li>
             <% } else{ %>
               <li class="nav-item">

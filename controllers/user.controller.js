@@ -112,7 +112,7 @@ const verify=async(req,res)=>
 }
 
 const renderImage = (req, res) => {
-    res.render('users/uploadimage'),{body: req.body};
+    res.render('users/uploadimage',{body: req.body});
 };
 
 const uploadImage = async (req, res) => {
