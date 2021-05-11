@@ -30,6 +30,12 @@ Router.route('/addmoney')
     .get(IsLoggedInMiddleware(), userController.renderAddMoney)
     .post(IsLoggedInMiddleware(), userController.addMoney)
 
+Router.route('/apiotp/:value')
+    .get(userController.apiOtp);
+
+Router.route('/resendotp')
+    .post(IsLoggedInMiddleware(),userController.resendOTP);
+
 Router.route('/logout')
     .delete(IsLoggedInMiddleware(), userController.logout);
 

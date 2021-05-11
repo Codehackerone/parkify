@@ -101,7 +101,8 @@ const verify=async(req,res)=>
         if(decoded.otp===otp){
             await userService.verified(req.body.username);
             res.clearCookie('otp');
-            res.send('Verified')
+            req.flash('success','Verification Complete. Welcome Aboard.');
+            res.redirect('/users/dashboard');
         }
         else
         {
@@ -143,12 +144,19 @@ const addMoney=async (req,res)=>
     }
 }
 
-const apiOtp=(str)=>
+const apiOtp=(req,res)=>
 {
+    var str=req.params.value;
     let token = req.cookies['otp'];
     let decoded = jwt.verify(token, process.env.JWT_SECRET);
-    if(decoded.otp===str)return true;
-    else return false;
+    if(decoded.otp===str)res.send('1');
+    else res.send('0');
+}
+
+const resendOTP=(req,res)=>
+{
+    req.flash('alert','Your OTP has been resent successfully to your email.');
+    res.redirect('/users/verify');
 }
 module.exports={
 renderLogin,
@@ -163,5 +171,6 @@ renderImage,
 uploadImage,
 renderAddMoney,
 addMoney,
-apiOtp
+apiOtp,
+resendOTP
 };

@@ -4,19 +4,84 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
+  <title>Verify Email</title>
   <%- include('../partials/header.ejs') %>  
 </head>
 <body>
   
 <%- include('../partials/alerts.ejs') %>  
-<h1>Verify Email</h1>
-Email-<%=email%><br>
-<form action="/users/verify" method="POST">
-    <input type="text" name="otp" placeholder="OTP">
-    <button type="submit">Submit</button>
-
-    <a href="/users/verify"><button type="button">Resend OTP</button></a>
-</form>
+  <form id="resendotp" action="/users/resendotp" method="POST"></form>
+  <div class="container d-flex justify-content-center align-items-center mt-5">
+  <div class="row">
+      <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+          <div class="card shadow">
+              <img src="/img/coverimg.jpg" alt="" class="card-img-top" />
+              <div class="card-body">
+                  <h5 class="card-title">Enter OTP</h5>
+                  <h6>Email has been sent to : <%=email%></h6>
+                  <form action="/users/verify" method="POST" class="validated-form" novalidate>
+                      <div class="mb-3">
+                          <input class="form-control" type="text" id="otp" name="otp" autofocus required onkeyup="checkOTP()">
+                          <div class="valid-feedback">
+                              Looks good!
+                          </div>
+                          <div class="invalid-feedback">
+                            Please Enter Correct OTP
+                        </div>
+                      </div>
+                      <div id="resend"></div>
+                      <button type="submit" id="submit-otp" class="btn btn-success btn-block" disabled>Submit</button>
+                      <button type="button" id="btn-resend" disabled onclick="javascript:$('#resendotp').submit();" class="btn btn-secondary btn-block">
+                        Resend OTP</button>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
 </body>
 </html>
+<script>
+function checkOTP() {
+  var value=document.getElementById('otp').value;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var res = this.responseText;
+      if(res==='1')
+      {
+        $('#otp').attr("class","form-control is-valid");
+        document.getElementById('submit-otp').disabled=false;
+      }
+      else
+      {
+        $('#otp').attr("class","form-control is-invalid");
+        document.getElementById('submit-otp').disabled=true;
+      }
+    }
+  };
+  xhttp.open("GET", "/users/apiotp/"+value, true);
+  xhttp.send();
+}
+function two(x)
+{
+  if(x<10)return `0${x}`;
+  else return `${x}`;
+}
+var y=60;
+var x = setInterval(function() {
+  if(y==0)
+  {
+    var text=`Resend OTP available now`;
+    document.getElementById('resend').innerHTML=text;
+    document.getElementById('btn-resend').disabled=false;
+    clearInterval(x);
+  }
+  else
+  {
+    var text=`Resend OTP available in ${y} seconds`;
+    document.getElementById('resend').innerHTML=text;
+    y--;
+  }
+}, 1000);
+</script>

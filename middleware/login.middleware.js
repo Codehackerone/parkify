@@ -24,7 +24,7 @@ const IsLoggedInMiddleware = () => {
                     req.flash('err','User Doesnt Exist');
                     res.redirect('/');
                 }
-                else if(user.verified===false && req.url!="/verify")
+                else if(user.verified===false && req.url!="/verify" && req.url!="/resendotp")
                 {
                     req.flash('alert','Not Verified.');
                     res.redirect('/users/verify');
