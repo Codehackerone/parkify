@@ -2,7 +2,7 @@ mapboxgl.accessToken = mapboxtoken;
 var garages={ features: JSON.parse(garage_raw) };
 const map = new mapboxgl.Map({
     container: 'cluster-map',
-    style: 'mapbox://styles/mapbox/streets-v11',
+    style: 'mapbox://styles/mapbox/light-v10',
     center: [77.2314900, 28.6519500],
     zoom: 3
 });
