@@ -3,30 +3,62 @@
 <head>
     <title>Slot</title>
     <%- include('../partials/header')%>
+    <%- include('../partials/navbar')%>
+    <link href="/css/calendar.css" rel='stylesheet'>
 </head>
 <body>
     <%- include('../partials/alerts')%>
-    <h1>Slot <%=slot.name%></h1>
-    <div class="container">
+    <!-- <div class="container">
             Name-<%=slot.name%><br>
             Type-<%=slot.type%><br>
             Price/Minute-<%=slot.price%><br>
             Bookings-
-            
-
-            <% if(bookings.length!==0){%>
-                <ul>
-                <%for(let booking of bookings){%>
-                <li><%=new Date(booking.start_time*1000)%> - <%=new Date(booking.end_time*1000)%> </li>
-            <% }%>            </ul> 
-            <% }else{%>
-                No Bookings Found!
-            <%} %>
             <a href="/booking/new/<%=slot._id%>"><button>Book Slot</button></a>
             <form action="/slot/<%=slot._id%>?_method=DELETE" method="POST">
                 <button type="submit">Delete</button>
             </form>
-    </form>
+    </div> -->
+    <div class="container">
+        <br><br>
+    <div class="row">
+        <div class="col-6">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title"><%= slot.name%> of Garage <%=garage.name%></h5>
+                    <p class="card-text">For <%=slot.type%> Cars. Price/min- <%=slot.price%></p>
+                </div>
+            </div>
+            <a href="/booking/new/<%=slot._id%>" class="btn btn-primary">Book Slot</a>
+            <a href="/slot/garage/<%=garage._id%>" class="btn btn-secondary">Back to Slots from Garage <%=garage.name%></a>
+            <br><br>
+            <% if(body.user_type==="admin") {%>
+                <form action="/slot/<%=slot._id%>?_method=DELETE" method="POST">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+            <% } %> 
+        </div>
+        <div class="col-6">
+            <% if(bookings.length!==0){%>
+                <h3>Bookings</h3>
+                <ul class="list-group list-group-flush"> 
+                <%for(let booking of bookings){%>
+                <li class="list-group-item"><%=new Date(booking.start_time*1000)%> - <%=new Date(booking.end_time*1000)%> </li>
+            <% }%>            </ul> 
+            <% }else{%>
+                No Bookings Found!
+            <%} %>
+        </div>
     </div>
+</div>
+    <!-- <div id="calendar">
+        <h1>October</h1>
+        <table>
+          <tr><td class="lastmonth">30</td><td>1</td><td>2</td><td>3</td><td class="hastask">4</td><td>5</td><td>6</td></tr>
+          <tr><td>7</td><td class="current">8</td><td class="hastask">9</td><td>10</td><td>11</td><td class="hastask">12</td><td>13</td></tr>
+          <tr><td>14</td><td class="hastask">15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td></tr>
+          <tr><td class="hastask">21</td><td>22</td><td>23</td><td>24</td><td>25</td><td class="hastask">26</td><td>27</td></tr>
+          <tr><td>28</td><td>29</td><td class="hastask">30</td><td>31</td><td class="nextmonth">1</td><td>2</td><td>3</td></tr>
+        </table>
+      </div> -->
 </body>
 </html>

@@ -27,7 +27,16 @@ const renderSlot = async (req, res) => {
         res.redirect('/garage/');
     } else {
         var bookings=await findBookings(slot._id);
-        res.render('slots/slot',{slot:slot,bookings:bookings,body: req.body});
+        var garage=await garageService.FindGarage(slot.garage_id);
+        if(!garage)
+        {
+            req.flash('err','Garage not Found');
+            res.redirect('/garage');
+        }
+        else
+        {
+            res.render('slots/slot',{slot:slot,bookings:bookings,body: req.body,garage:garage});
+        }
     }
 };
 
