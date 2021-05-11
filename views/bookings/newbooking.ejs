@@ -7,17 +7,41 @@
 <body>
     <%- include('../partials/navbar.ejs')%>
     <%- include('../partials/alerts')%>
-    <div class="container">
-        <h1>New Booking</h1>
-    <form action="/booking/new/<%=slot_id%>" method="POST">
-        <input type="text" name="slot_id" required placeholder="Slot ID" value="<%=slot_id%>"><br>
-        <input type="text" name="user_id" required value="<%=userid%>" placeholder="User ID"><br>
-        <input type="datetime-local" name="start_datetime" id="start_time" required placeholder="Start Date" ><br>
-        <input type="datetime-local" name="end_datetime" id="end_time" required placeholder="End Date" ><br>
-        <button type="submit">Submit</button>
-    </form>
-    </div>
-
+    <div class="container d-flex justify-content-center align-items-center mt-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+                <div class="card shadow">
+                    <img src="/img/coverimg.jpg" alt="" class="card-img-top" />
+                    <div class="card-body">
+                        <h5 class="card-title">New Booking</h5>
+                        <p class="text-primary">For Slot <%=slot.name%> of <%=garage.name%> Garage.<br>
+                        For <%=slot.type%> Cars. Price/Minute is <%=slot.price%>.
+                        </p>
+                        <p class="text-danger">You can Book for one month prior only</p>
+                        <form action="/booking/new/<%=slot._id%>" method="POST" class="validated-form" novalidate>
+                            <input type="text" hidden name="slot_id" required placeholder="Slot ID" value="<%=slot._id%>">
+                            <input type="text" hidden name="user_id" required value="<%=userid%>" placeholder="User ID">
+                            <div class="mb-3">
+                                <label class="form-label" for="start_time">Start Date and Time</label>
+                                <input type="datetime-local" class="form-control" name="start_datetime" id="start_time" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="end_time">End Date and Time</label>
+                                <input type="datetime-local" class="form-control" name="end_datetime" id="end_time" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <button class="btn btn-success btn-block">Check other bookings and book.</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
 </body>
 <script src="/js/newbooking.js"></script>
 </html>

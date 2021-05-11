@@ -1,8 +1,27 @@
 const bookingService = require('../services/booking.service');
+const slotService=require('../services/slot.service');
+const garageService=require('../services/garage.service');
 
-const renderNewBooking = (req, res) => {
+const renderNewBooking = async(req, res) => {
     var slot_id=req.params.id;
-    res.render('bookings/newbooking',{userid:req.body.user_id,slot_id:slot_id,body: req.body});
+    var slot=await slotService.FindSlot(slot_id); 
+    if(slot===null)
+    {
+        req.flash('err','Slot doesnt exist');
+        res.redirect('/garage');
+    }
+    else
+    {
+        var garage=await garageService.FindGarage(slot.garage_id);
+        if(!garage)
+        {
+            req.flash('err','Garage doesnt exist for the slot.');
+            res.redirect('/garage');
+        }
+        else{
+        res.render('bookings/newbooking',{userid:req.body.user_id,slot:slot,body: req.body,garage:garage});
+        }
+    }
 };
 
 const newBooking=async(req,res)=>{

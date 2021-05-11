@@ -22,8 +22,7 @@ const FindSlot = async (id) => {
     }
     catch(err)
     {
-        const slot=null;
-        return slot;
+        return null;
     }    
 };
 
