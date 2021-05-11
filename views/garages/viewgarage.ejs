@@ -1,29 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Garages</title>
+    <title>Garage <%=garage.name%></title>
     <%- include('../partials/header')%>
     <%- include('../partials/maps') %>
+    <script src="/js/allgarage.js"></script>
 </head>
 <body>
     <%- include('../partials/navbar.ejs')%>
     <%- include('../partials/alerts')%>
-    <h1>Garage <%=garage.name%></h1>
-    <div id='map' style="width: 400px; height: 300px;"></div>
-    <img src="<%=garage.picture_url%>" style="width: 400px; height: 300px;">
     <div class="container">
-            Name-<%=garage.name%><br>
-            Location-<%=garage.location%><br>
-            Location Category-<%=garage.location_cat%><br>
-            Size-<%=garage.size%><br>
-            Owner-<%=garage.owner%><br>
-            Number of Slots-<%=garage.slots.length%>
-    </form>
+        <br><br>
+    <div class="row">
+        <div class="col-6">
+            <img src="<%= garage.picture_url%>" class="d-block w-100" alt="">
+    
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title"><%= garage.name%></h5>
+                    <p class="card-text">Owned by <%= garage.owner%></p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item text-muted">Size- <%=garage.size%></li>
+                    <li class="list-group-item text-muted">Slots- <%=garage.slots.length%>(<span id="<%=garage._id%>"></span>)
+                        <a class="link-info" href="/slot/garage/<%=garage._id%>">View Slots</a>
+                    </li>
+                    <li class="list-group-item text-muted"><%= garage.location%> (<%= garage.location_cat%>)</li>
+                    <script>getSlotInfo('<%=garage._id%>')</script>
+                </ul>
+            </div>
+    
+        </div>
+        <div class="col-6">
+            <div id='map' style="width: auto; height: 350px;"></div>
+            <br>
+            <% if(body.user_type==="admin") {%>
+                <form action="/garage/<%=garage._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger" type="submit">Delete Garage</button>
+                    <a class="btn btn-primary" href="/slot/add/<%=garage._id%>">Create Slot</a> 
+                </form><br>
+            <% } %> 
+        </div>
     </div>
-    <form action="/garage/<%=garage._id%>?_method=DELETE" method="POST">
-        <button type="submit">Delete</button>
-    </form>
-    <a href="/slot/add/<%=garage._id%>"><button>Create Slot</button></a>
+</div>
 </body>
 </html>
 <script>
