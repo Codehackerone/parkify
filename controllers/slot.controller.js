@@ -55,14 +55,17 @@ const renderSlots=async(req,res)=>
         req.flash('err','Garage Not Found!');
         res.redirect('/garage/');
     }
-    var slots=garage.slots;
-    var arr_slot=[]
-    for(var slot of slots)
+    else
     {
-        var slot_det=await slotService.FindSlot(slot);
-        arr_slot.push(slot_det);
+        var slots=garage.slots;
+        var arr_slot=[]
+        for(var slot of slots)
+        {
+            var slot_det=await slotService.FindSlot(slot);
+            arr_slot.push(slot_det);
+        }
+        res.render('slots/allslots',{garage:garage,slots:arr_slot,body: req.body});
     }
-    res.render('slots/allslots',{garage:garage,slots:arr_slot,body: req.body});
 }
 
 const findBookings=async(id)=>

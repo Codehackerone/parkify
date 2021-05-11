@@ -7,16 +7,27 @@
 <body>
     <%- include('../partials/navbar.ejs')%>
     <%- include('../partials/alerts')%>
-    <h1>All Slots for <%=garage.name%></h1>
+
     <div class="container">
+        <center><h3> All Slots for <%=garage.name%>.<br></h3>
+            <h5> <a class="link-secondary" href="/garage/<%=garage._id%>">Back to Garage</a></h5></center>
         <% for (var slot of slots)  {%>
-            Name-<%=slot.name%><br>
-            Type-<%=slot.type%><br>
-            Price/Minute-<%=slot.price%><br>
-            <a href="/slot/<%=slot._id%>"><button>View Slot</button></a>
-            <a href="/booking/new/<%=slot._id%>"><button>Book Slot</button></a>
-            <hr>
-            <% }%>
+            <div class="card mb-3">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Slot Name- <%= slot.name %> </h5>
+                            <p class="card-text">
+                                For <%=slot.type%> Cars.<br>
+                                Price/Hour- <%=slot.price%>
+                            </p>
+                            <a class="link-primary" href="/slot/<%=slot._id%>">View Slot</a>
+                            <a class="link-success" href="/booking/new/<%=slot._id%>">Book Slot</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% }%>
     </form>
     </div>
 </body>
