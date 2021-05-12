@@ -15,6 +15,7 @@ const NewBooking = async (bookingBody) => {
             {
                 var booking=await Booking.findById(all_bookings[i]);
                 if(!booking)continue;
+                if(booking.status==="Cancelled")continue;
                 var a=parseInt(booking.start_time),b=parseInt(booking.end_time);
                 var c=parseInt(bookingBody.start_time),d=parseInt(bookingBody.end_time);
                 if((c>=a && c<=b)||(d>=a && d<=b)||(c<=a && d>=b)){
@@ -82,7 +83,36 @@ const FindByUser=async(id)=>
     }
     catch(err)
     {
-        res.send('Error');
+        res.send('User not found.');
+    }
+}
+
+const cancelBooking=async(id)=>
+{
+    var booking=await Booking.findById(id);
+    if(!booking)throw "Booking not Found";
+    else if(booking.status==="Cancelled")
+    {
+        throw "Booking already Cancelled";
+    }
+    else if(booking.end_time<=(new Date().getTime()/1000))
+    {
+        booking.status="Completed";
+        await booking.save();
+        throw "Booking already Completed."
+    }
+    else{
+        var user=await User.findById(booking.user_id);
+        if(!user)throw "User not found";
+        else
+        {
+            booking.status="Cancelled";
+            var money=parseFloat(user.money);
+            money=money+parseFloat(booking.amount/2);
+            user.money=money;
+            await booking.save();
+            await user.save();
+        }
     }
 }
 
@@ -91,5 +121,6 @@ module.exports={
     FindBooking,
     DeleteBooking,
     apiMoney,
-    FindByUser
+    FindByUser,
+    cancelBooking
 }

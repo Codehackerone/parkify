@@ -41,7 +41,7 @@
             <% if(bookings.length!==0){%>
                 <h3>Bookings</h3>
                 <ul class="list-group list-group-flush"> 
-                <%for(let booking of bookings){%>
+                <%for(let booking of bookings){ if(booking.status==="Cancelled"){continue;}%>
                 <li class="list-group-item"><%=new Date(booking.start_time*1000)%> - <%=new Date(booking.end_time*1000)%> </li>
             <% }%>            </ul> 
             <% }else{%>

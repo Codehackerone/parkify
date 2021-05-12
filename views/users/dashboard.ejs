@@ -16,11 +16,15 @@
 
 <h3>Your Bookings:</h3>
   <hr>
-  <% for(let booking of bookings){%>
+  <% for(let booking of bookings){ if(booking.status==="Completed"){continue;}%>
     <b>Status</b>-<%=booking.status%><br>
     <b>Start Time</b>-<%=new Date(booking.start_time*1000)%><br>
     <b>End Time</b>-<%=new Date(booking.end_time*1000)%><br>
-    <button class="btn btn-danger">Cancel Booking</button><br>
+    <% if(booking.status!=="Cancelled"){ %> 
+    <form action="/booking/cancel/<%=booking._id%>" method="POST">
+    <button type="submit" class="btn btn-danger">Cancel Booking</button>
+    </form>
+    <% } %> 
     <hr>
   <% }if(!bookings){ %>
     No Bookings Found!

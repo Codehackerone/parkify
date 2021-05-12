@@ -12,4 +12,7 @@ Router.route('/:id')
     .get(IsLoggedInMiddleware(),bookingController.renderBooking)
     .delete(IsLoggedInMiddleware(),bookingController.deleteBooking)
 
+Router.route('/cancel/:id')
+    .post(IsLoggedInMiddleware(),bookingController.cancelBooking)
+
 module.exports=Router;

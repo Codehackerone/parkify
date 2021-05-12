@@ -65,9 +65,25 @@ const deleteBooking=async(req,res)=>
     }
 }
 
+const cancelBooking=async(req,res)=>
+{
+    var id=req.params.id;
+    try{
+        await bookingService.cancelBooking(id);
+        req.flash('success','Booking cancelled successfully');
+        res.redirect('/users/dashboard');
+    }
+    catch(err)
+    {
+        req.flash('err',err);
+        res.redirect('/users/dashboard');
+    }
+}
+
 module.exports={
     renderNewBooking,
     newBooking,
     renderBooking,
-    deleteBooking
+    deleteBooking,
+    cancelBooking
 };
