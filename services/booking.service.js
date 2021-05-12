@@ -116,11 +116,23 @@ const cancelBooking=async(id)=>
     }
 }
 
+const completeBooking=async(id)=>
+{
+    var booking=await Booking.findById(id);
+    if(!booking)return ;
+    else
+    {
+        booking.status="Completed";
+        await booking.save();
+    }
+}
+
 module.exports={
     NewBooking,
     FindBooking,
     DeleteBooking,
     apiMoney,
     FindByUser,
-    cancelBooking
+    cancelBooking,
+    completeBooking
 }
