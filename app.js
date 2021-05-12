@@ -66,6 +66,7 @@ app.use(session(sessionConfig));
 app.use(flash());
 app.use(methodOverride('_method'));
 app.use(helmet({ contentSecurityPolicy: false }));
+app.use(favicon(__dirname + '/public/img/favicon.ico'));
 
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
