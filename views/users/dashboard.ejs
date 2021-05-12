@@ -22,7 +22,10 @@
     <b>End Time</b>-<%=new Date(booking.end_time*1000)%><br>
     <button class="btn btn-danger">Cancel Booking</button><br>
     <hr>
-  <% }%>
+  <% }if(!bookings){ %>
+    No Bookings Found!
+  <% } %>
+  %>
 </div>
 </body>
 <%- include('../partials/footer.ejs') %>
