@@ -10,22 +10,19 @@
 <body>
   <%- include('../partials/navbar.ejs')%>
 <%- include('../partials/alerts.ejs') %>  
-<!-- <h1>Register</h1>
-<form action="/users/register" method="POST">
-    <input type="text" name="name" placeholder="name"><br>
-    <input type="email" name="email" placeholder="Email"><br>
-    <input type="password" name="password" placeholder="Password"><br>
-    <input type="text" name="phone" placeholder="Phone"><br>
-    <input type="text" name="username" placeholder="Username"><br>
-    <button type="submit">Submit</button>
-</form> -->
 <div class="container d-flex justify-content-center align-items-center mt-5">
   <div class="row">
-      <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+      <div class="col-md-6 offset-md-6 col-xl-6 offset-xl-3">
           <div class="card shadow">
               <img src="/img/coverimg.jpg" alt="" class="card-img-top" />
               <div class="card-body">
-                  <h5 class="card-title">Register</h5>
+                  <h5 class="card-title">Register
+                  </h5>
+                  <p class="text-primary">This website does not use cookies for tracking. 
+                    They are only used for a better experience on its services.
+                     For more information on what types of cookies are stored, please contact the support.
+                    By registering, you agree to our privacy policies.
+                    </p>
                   <form action="/users/register" method="POST" class="validated-form" novalidate>
                       <div class="mb-3">
                           <label class="form-label" for="name">Name</label>
@@ -70,5 +67,6 @@
       </div>
   </div>
 </div>
+<% include('../partials/footer') %>
 </body>
 </html>
