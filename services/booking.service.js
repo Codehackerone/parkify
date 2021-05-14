@@ -1,12 +1,13 @@
 const Booking = require('../models/booking.model');
 const Slot=require('../models/slot.model');
 const User=require('../models/user.model');
+const Transaction=require('../models/transaction.model');
 
 const NewBooking = async (bookingBody) => {
     try {
         const slot=await Slot.findById(bookingBody.slot_id);
         if(bookingBody.start_time>=bookingBody.end_time){
-            throw "PLease Choose a Correct Start and End Date!";
+            throw "Please Choose a Correct Start and End Date!";
         }
         const all_bookings=slot.bookings;
         if(all_bookings.length!=0)
@@ -36,6 +37,13 @@ const NewBooking = async (bookingBody) => {
         money=money-parseFloat(bookingBody.amount);
         user.money=money;
         await user.save();
+        const transaction={
+            user_id:user._id,
+            type:'debit',
+            amount:parseFloat(bookingBody.amount),
+            remarks:'book_slot'
+        };
+        await Transaction.create(transaction);
         return result;
     } catch (error) {
         throw error;
