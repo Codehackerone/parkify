@@ -7,13 +7,17 @@ const transactionSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: 'User',
         },
+        type:{
+            type:String,
+            enum: ["credit", "debit"]
+        },
         amount:{
             type:Schema.Types.Decimal128,
             required:true
         },
-        Remarks:{
+        remarks:{
             type:String,
-            required:true
+            enum: ["add_fund", "book_slot", "refund"]
         }
     },
     {
