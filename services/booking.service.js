@@ -42,7 +42,7 @@ const NewBooking = async (bookingBody) => {
             type:'debit',
             amount:parseFloat(bookingBody.amount),
             remarks:'book_slot',
-            slot_id:slot._id
+            booking_id:result._id
         };
         await Transaction.create(transaction);
         return result;
@@ -119,8 +119,16 @@ const cancelBooking=async(id)=>
             var money=parseFloat(user.money);
             money=money+parseFloat(booking.amount/2);
             user.money=money;
+            const transaction={
+                user_id:user._id,
+                type:'credit',
+                amount:parseFloat(booking.amount/2),
+                remarks:'refund',
+                booking_id:booking._id
+            };
+            await Transaction.create(transaction);
             await booking.save();
-            await user.save();
+            await user.save();            
         }
     }
 }

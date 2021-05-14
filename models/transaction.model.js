@@ -12,10 +12,10 @@ const transactionSchema = new Schema(
             type:String,
             enum: ["credit", "debit"]
         },
-        slot_id:
+        booking_id:
         {
             type:Schema.Types.ObjectId,
-            ref:'Slot',
+            ref:'Booking',
         },
         amount:{
             type:Schema.Types.Decimal128,
