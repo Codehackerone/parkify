@@ -41,7 +41,8 @@ const NewBooking = async (bookingBody) => {
             user_id:user._id,
             type:'debit',
             amount:parseFloat(bookingBody.amount),
-            remarks:'book_slot'
+            remarks:'book_slot',
+            slot_id:slot._id
         };
         await Transaction.create(transaction);
         return result;

@@ -6,10 +6,16 @@ const transactionSchema = new Schema(
         user_id: {
             type: Schema.Types.ObjectId,
             ref: 'User',
+            required:true
         },
         type:{
             type:String,
             enum: ["credit", "debit"]
+        },
+        slot_id:
+        {
+            type:Schema.Types.ObjectId,
+            ref:'Slot',
         },
         amount:{
             type:Schema.Types.Decimal128,
