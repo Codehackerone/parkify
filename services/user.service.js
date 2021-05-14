@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const nodemailer = require("nodemailer");
 const helper=require('../utils/helper');
+const Transaction=require('../models/transaction.model');
 
 const expiry_length = parseInt(process.env.EXPIRY) * 86400;
 const jwt_headers = {
@@ -112,6 +113,13 @@ const addMoney=async(user_id,added_money)=>
         var money=parseFloat(user.money);
         money+=parseFloat(added_money);
         user.money=money;
+        const transaction={
+            user_id:user._id,
+            type:'credit',
+            amount:parseFloat(added_money),
+            remarks:'add_fund',
+        };
+        await Transaction.create(transaction);
         await user.save();
     }
 }
