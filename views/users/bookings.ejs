@@ -11,10 +11,9 @@
 <%- include('../partials/navbar.ejs')%>
 <%- include('../partials/alerts.ejs') %>  
 <div class="container">
-<center><h1>Dashboard</h1>
-<h3>Welcome <%=body.name%></h3></center>
+<center><h1>All Bookings</h1></center>
 
-<!-- <h3>Your Bookings:</h3>
+<h3>Your Bookings:</h3>
   <hr>
   <% for(let booking of bookings){ if(booking.status==="Completed"){continue;}%>
     <b>Status</b>-<%=booking.status%><br>
@@ -29,7 +28,7 @@
   <% }if(!bookings){ %>
     No Bookings Found!
   <% } %>
-  %> -->
+  %>
 </div>
 </body>
 <%- include('../partials/footer.ejs') %>

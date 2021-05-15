@@ -172,6 +172,19 @@ const renderTransactions=async(req,res)=>
     res.render('users/transactions', {body: req.body,transactions:transactions});
 }
 
+const renderBookings=async(req,res)=>
+{
+    var bookings=await bookingService.FindByUser(req.body.user_id);
+    for(let booking of bookings)
+    {
+        if(booking.status!=="Completed" && (booking.end_time<=(new Date().getTime()/1000)))
+        {
+            await bookingService.completeBooking(booking._id);
+        }
+    }
+    res.render('users/bookings', {body: req.body,bookings:bookings});
+};
+
 module.exports={
 renderLogin,
 renderRegister,
@@ -187,5 +200,6 @@ renderAddMoney,
 addMoney,
 apiOtp,
 resendOTP,
-renderTransactions
+renderTransactions,
+renderBookings
 };

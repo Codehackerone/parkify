@@ -42,4 +42,7 @@ Router.route('/logout')
 Router.route('/transactions')
     .get(IsLoggedInMiddleware(),userController.renderTransactions);
 
+Router.route('/bookings')
+    .get(IsLoggedInMiddleware(),userController.renderBookings);
+
 module.exports=Router;
