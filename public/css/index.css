@@ -36,3 +36,12 @@ body {
     color: #333;
     text-shadow: none;
 }
+.github-link{
+    color: white; 
+    text-decoration: none;
+    transition: 0.5s;
+}
+.github-link:hover{
+    color:white;
+    text-decoration: underline;
+}
