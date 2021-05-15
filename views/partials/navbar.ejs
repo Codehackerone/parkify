@@ -18,10 +18,9 @@
         </ul>
         <ul class="navbar-nav ms-auto">
           <% if(typeof body !== 'undefined'){%>
-            <li class="nav-item">
-              <!-- <a class="nav-link" aria-current="page" href="/users/register">Logout</a> -->
+            <!-- <li class="nav-item">
               <form method="POST" action="/users/logout?_method=DELETE" id="logout-form">
-                <a class="nav-link" type="submit" href="javascript:$('#logout-form').submit();">Logout</a>
+                <a class="nav-link" href="javascript:$('#logout-form').submit();">Logout</a>
               </form>
             </li>
             <li class="nav-item">
@@ -31,7 +30,27 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="/users/addmoney"><i class="fas fa-rupee-sign"></i>&nbsp;<%=Math.round(body.money*1000)/1000%></a>
+            </li> -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
+              data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="<%=body.picture_url%>" class="img-fluid"
+                 style="height: 20px; width:20px; border: 1px solid white; border-radius: 50%;">
+              <%=body.username%>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="/users/changeimage">Change Profile Image</a></li>
+                <li><a class="dropdown-item" href="/users/addmoney">Add money</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <form method="POST" action="/users/logout?_method=DELETE" id="logout-form"></form>
+                <li><a class="dropdown-item" href="javascript:$('#logout-form').submit();">
+                  Logout </a>
+                </li>
+              </ul>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page"><i class="fas fa-rupee-sign"></i>&nbsp;<%=Math.round(body.money*1000)/1000%></a>
+            </li> 
             <% } else{ %>
               <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="/users/login">Login</a>
