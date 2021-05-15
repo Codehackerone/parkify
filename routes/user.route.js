@@ -39,4 +39,7 @@ Router.route('/resendotp')
 Router.route('/logout')
     .delete(IsLoggedInMiddleware(), userController.logout);
 
+Router.route('/transactions')
+    .get(IsLoggedInMiddleware(),userController.renderTransactions);
+
 module.exports=Router;

@@ -123,11 +123,19 @@ const addMoney=async(user_id,added_money)=>
         await user.save();
     }
 }
+
+const getTransactions=async(id)=>
+{
+    var transactions=await Transactions.find({user_id:id});
+    return transactions;
+}
+
 module.exports={
     Register,
     Login,
     generateOtp,
     verified,
     updateImage,
-    addMoney
+    addMoney,
+    getTransactions
 };

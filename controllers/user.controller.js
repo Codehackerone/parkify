@@ -165,6 +165,13 @@ const resendOTP=(req,res)=>
     req.flash('alert','Your OTP has been resent successfully to your email.');
     res.redirect('/users/verify');
 }
+
+const renderTransactions=async(req,res)=>
+{
+    var transactions=await userService.getTransactions(req.body.user_id);
+    res.render('users/transactions', {body: req.body,transactions:transactions});
+}
+
 module.exports={
 renderLogin,
 renderRegister,
@@ -179,5 +186,6 @@ uploadImage,
 renderAddMoney,
 addMoney,
 apiOtp,
-resendOTP
+resendOTP,
+renderTransactions
 };
