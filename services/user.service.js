@@ -126,7 +126,7 @@ const addMoney=async(user_id,added_money)=>
 
 const getTransactions=async(id)=>
 {
-    var transactions=await Transactions.find({user_id:id});
+    var transactions=await Transaction.find({user_id:id});
     return transactions;
 }
 

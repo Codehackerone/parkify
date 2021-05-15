@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transactions</title>
+  <%- include('../partials/header.ejs') %>  
+</head>
+<body>
+<%- include('../partials/navbar.ejs')%>
+<%- include('../partials/alerts.ejs') %>  
+<div class="container">
+<center><h1>Transactions</h1></center>
+<h3>Your Transactions:</h3>
+  <hr>
+  <% for(let transaction of transactions){ if(transaction.status==="Completed"){continue;}%>
+    <b>Type</b>-<%=transaction.type%><br>
+    <% if(transaction.booking_id){ %>
+    <b>Booking Id</b>-<%=transaction.booking_id%><br>
+    <% } %>
+    <b>Amount</b>-<%=transaction.amount%><br>
+    <b>Remarks</b>-<%=transaction.remarks%><br>
+    <hr>
+  <% }if(!transactions){ %>
+    No transactions Found!
+  <% } %>
+  %>
+</div>
+</body>
+<%- include('../partials/footer.ejs') %>
