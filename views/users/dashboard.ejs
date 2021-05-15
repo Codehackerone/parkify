@@ -14,9 +14,9 @@
 <center><h1>Dashboard</h1>
 <h3>Welcome <%=body.name%></h3></center>
 
-<!-- <h3>Your Bookings:</h3>
+<h3>Your Current Bookings:</h3>
   <hr>
-  <% for(let booking of bookings){ if(booking.status==="Completed"){continue;}%>
+  <% for(let booking of bookings){ if(booking.status==="Completed" || booking.status==="Cancelled"){continue;}%>
     <b>Status</b>-<%=booking.status%><br>
     <b>Start Time</b>-<%=new Date(booking.start_time*1000)%><br>
     <b>End Time</b>-<%=new Date(booking.end_time*1000)%><br>
@@ -29,7 +29,7 @@
   <% }if(!bookings){ %>
     No Bookings Found!
   <% } %>
-  %> -->
+  %>
 </div>
 </body>
 <%- include('../partials/footer.ejs') %>
