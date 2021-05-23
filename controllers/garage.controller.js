@@ -115,7 +115,23 @@ const rendergaragebyip=async(req,res)=>
 
 const rendergaragebyloc=async(req,res)=>
 {
-  res.render("garages/foundgarage",{ body: req.body,by:"Location"})
+  if(!req.body.location)
+  {
+    req.flash('err','location not given');
+    res.redirect('/garage/find');
+  }
+  else
+  {
+    const geoData = await geocoder
+        .forwardGeocode({
+          query: req.body.location,
+          limit: 1,
+        })
+        .send();
+    var geometry = geoData.body.features[0].geometry;
+    geometry.place_name=req.body.location;
+    res.render("garages/foundgarage",{ body: req.body,by:"Location",geometry:geometry,maptoken: mapBoxToken})
+  }
 }
 
 module.exports = {
