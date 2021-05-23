@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Found Garages</title>
+    <%- include('../partials/header')%>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../partials/maps') %>
+</head>
+<body>
+    <%- include('../partials/navbar.ejs')%>
+    <%- include('../partials/alerts')%>
+    <br>
+    <div class="container">
+        <center><h1>Found Garages by <%=by%> near you<br>
+            (Within <%=Math.round(min_distance*100)/100%> km radius)
+        </h1></center><br>
+        <div id='map' style="width: auto; height: 350px;"></div>
+    </div>
+</body>
+</html>
+<style>
+    #map {
+        width: 100%;
+        height: 300px;
+    }
+    /* .mapboxgl-canvas{
+        width: 100% !important;
+        height: 500px !important;
+    } */
+</style>
+<script>
+const g_raw='<%-JSON.stringify(geometry) %>';
+const nearest_garage='<%-JSON.stringify(garage) %>';
+const mapboxtoken='<%=maptoken%>';
+var geometry = JSON.parse(g_raw);
+var garage=JSON.parse(nearest_garage);
+mapboxgl.accessToken = mapboxtoken;
+var map = new mapboxgl.Map({
+  container: "map",
+  style: "mapbox://styles/mapbox/streets-v11",
+  center: geometry.coordinates,
+  zoom: 9,
+});
+var marker = new mapboxgl.Marker()
+  .setLngLat(geometry.coordinates)
+  .setPopup(
+    new mapboxgl.Popup({ offset: 25 }).setHTML(
+      `<h3>Your Location</h3><p>${geometry.place_name}</p>`
+    )
+  )
+  .addTo(map);
+
+  var marker = new mapboxgl.Marker()
+  .setLngLat(garage.geometry.coordinates)
+  .setPopup(
+    new mapboxgl.Popup({ offset: 25 }).setHTML(
+      `<h3>Nearest Garage.</h3><p>${garage.name}<br>${garage.location}</p>`
+    )
+  )
+  .addTo(map);
+
+</script>

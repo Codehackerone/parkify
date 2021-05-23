@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Find Garages</title>
+    <%- include('../partials/header')%>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <%- include('../partials/navbar.ejs')%>
+    <%- include('../partials/alerts')%>
+    <br>
+    <div class="container">
+        <center><h1>Find Garage</h1></center><br>
+
+        <form action="/garage/find/?_method=PUT" method="POST">
+            <button type="submit" class="btn btn-primary">Find by IP</button>
+        </form>
+        <br><br>
+        <form action="/garage/find/?_method=PATCH" method="POST">
+            <input type="text" name="location" class="form-control"><br>
+            <button type="submit" class="btn btn-primary">Find by location</button>
+        </form>
+    </div>
+</body>
+</html>

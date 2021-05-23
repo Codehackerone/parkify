@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Slot</title>
+    <%- include('../partials/header')%>
+    <%- include('../partials/navbar')%>
+</head>
+<body>
+    <%- include('../partials/alerts')%>
+    <div class="container">
+        <br><br>
+    <div class="row">
+        <div class="col-6">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title"><%= slot.name%> of Garage <%=garage.name%></h5>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-6">
+            <b>Status</b>-<%=booking.status%><br>
+            <b>Start Time</b>-<%=new Date(booking.start_time*1000)%><br>
+            <b>End Time</b>-<%=new Date(booking.end_time*1000)%><br>
+            <% if(booking.status!=="Cancelled" && booking.status!=="Completed"){ %> 
+            <form action="/booking/cancel/<%=booking._id%>" method="POST">
+            <button type="submit" class="btn btn-danger">Cancel Booking</button>
+            </form>
+            <% } %>
+        </div>
+    </div>
+</div>
+</body>
+</html>
