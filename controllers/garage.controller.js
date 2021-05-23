@@ -90,7 +90,12 @@ const deleteGarage = async (req, res) => {
 
 const renderfindgarage=async(req,res)=>
 {
-  res.render("garagess/findgarage",{ body: req.body});
+  res.render("garages/findgarage",{ body: req.body});
+}
+
+const renderfoundgarage=async(req,res)=>
+{
+  res.render("garages/foundgarage",{ body: req.body})
 }
 
 module.exports = {
@@ -100,5 +105,6 @@ module.exports = {
   renderAllGarages,
   apiSlotInfo,
   deleteGarage,
-  renderfindgarage
+  renderfindgarage,
+  renderfoundgarage
 };

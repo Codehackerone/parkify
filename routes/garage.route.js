@@ -26,6 +26,11 @@ Router.route("/add")
     garageController.addGarage
   );
 
+Router.route("/find")
+  .get(IsLoggedInMiddleware(),garageController.renderfindgarage)
+  .put(IsLoggedInMiddleware(),garageController.renderfoundgarage);
+
+
 Router.route("/:id")
   .get(IsLoggedInMiddleware(), garageController.renderGarage)
   .delete(
@@ -36,7 +41,4 @@ Router.route("/:id")
 
 Router.route("/apislot/:id").get(garageController.apiSlotInfo);
 
-Router.route("/findgarage")
-    .get(IsLoggedInMiddleware(),garageController.renderfindgarage)
-    
 module.exports = Router;
