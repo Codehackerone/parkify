@@ -35,9 +35,23 @@ const DeleteGarage = async (id) => {
   }
   await Garage.findByIdAndDelete(id);
 };
+
+const ReturnCoords=async()=>
+{
+  const garages=await AllGarages();
+  var coords=[];
+  for(let garage of garages)
+  {
+    coords.push(garage.geometry);
+  }
+  return coords;
+}
+
+
 module.exports = {
   AddGarage,
   FindGarage,
   AllGarages,
   DeleteGarage,
+  ReturnCoords
 };

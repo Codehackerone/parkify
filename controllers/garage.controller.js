@@ -130,7 +130,8 @@ const rendergaragebyloc=async(req,res)=>
         .send();
     var geometry = geoData.body.features[0].geometry;
     geometry.place_name=req.body.location;
-    res.render("garages/foundgarage",{ body: req.body,by:"Location",geometry:geometry,maptoken: mapBoxToken})
+    var coords=await garageService.ReturnCoords();
+    res.render("garages/foundgarage",{ body: req.body,by:"Location",geometry:geometry,maptoken: mapBoxToken,coords:coords})
   }
 }
 
