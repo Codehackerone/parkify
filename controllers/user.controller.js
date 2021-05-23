@@ -168,6 +168,10 @@ const renderBookings = async (req, res) => {
   res.render("users/bookings", { body: req.body, bookings: bookings });
 };
 
+const renderBooking=async(req,res)=>
+{
+  
+}
 module.exports = {
   renderLogin,
   renderRegister,
@@ -185,4 +189,5 @@ module.exports = {
   resendOTP,
   renderTransactions,
   renderBookings,
+  renderBooking
 };
