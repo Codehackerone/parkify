@@ -16,7 +16,7 @@
         </h1></center><br>
         <div id='map' style="width: auto; height: 350px;"></div>
     </div>
-    <%=dist%>
+    <%=garage%>
 </body>
 </html>
 <style>
@@ -31,8 +31,10 @@
 </style>
 <script>
 const g_raw='<%-JSON.stringify(geometry) %>';
+const nearest_garage='<%-JSON.stringify(garage) %>';
 const mapboxtoken='<%=maptoken%>';
 var geometry = JSON.parse(g_raw);
+var garage=JSON.parse(nearest_garage);
 mapboxgl.accessToken = mapboxtoken;
 var map = new mapboxgl.Map({
   container: "map",
@@ -45,6 +47,15 @@ var marker = new mapboxgl.Marker()
   .setPopup(
     new mapboxgl.Popup({ offset: 25 }).setHTML(
       `<h3>Your Location</h3><p>${geometry.place_name}</p>`
+    )
+  )
+  .addTo(map);
+
+  var marker = new mapboxgl.Marker()
+  .setLngLat(garage.geometry.coordinates)
+  .setPopup(
+    new mapboxgl.Popup({ offset: 25 }).setHTML(
+      `<h3>Nearest Garage.</h3><p>${garage.name}<br>${garage.location}</p>`
     )
   )
   .addTo(map);

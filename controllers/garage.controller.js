@@ -115,36 +115,49 @@ const rendergaragebyip=async(req,res)=>
 
 const rendergaragebyloc=async(req,res)=>
 {
-  if(!req.body.location)
-  {
-    req.flash('err','location not given');
-    res.redirect('/garage/find');
-  }
-  else
-  {
-    const geoData = await geocoder
-        .forwardGeocode({
-          query: req.body.location,
-          limit: 1,
-        })
-        .send();
-    var geometry = geoData.body.features[0].geometry;
-    geometry.place_name=req.body.location;
-    var coords=await garageService.ReturnCoords();
-    var min_distance=10000000.0;
-    var dist={};
-    for (let coord of coords){
-      var distance=garageService.DistanceCal(geometry.coordinates[1],geometry.coordinates[0],coord.coordinates[1],coord.coordinates[0]);
-      console.log(distance);
-      if(distance<=min_distance)
+  try{
+    if(!req.body.location)
+    {
+      req.flash('err','location not given');
+      res.redirect('/garage/find');
+    }
+    else
+    {
+      const geoData = await geocoder
+          .forwardGeocode({
+            query: req.body.location,
+            limit: 1,
+          })
+          .send();
+      var geometry = geoData.body.features[0].geometry;
+      geometry.place_name=req.body.location;
+      var garages=await garageService.AllGarages();
+      var min_distance=10000000.0;
+      var dist={};
+      for (let garage of garages){
+        var distance=garageService.DistanceCal(geometry.coordinates[1],geometry.coordinates[0],
+          garage.geometry.coordinates[1],garage.geometry.coordinates[0]);
+        if(distance<=min_distance)
+        {
+          dist=garage;
+          min_distance=distance;
+        }
+      }
+      if(min_distance>1000.0)
       {
-        dist=coord;
-        min_distance=distance;
+        req.flash("err","Sorry! No garages found within 1000.0 km radius.")
+        res.redirect("/garage/find");
+      }
+      else{
+        res.render("garages/foundgarage",{ body: req.body,by:"Location",geometry:geometry,maptoken: mapBoxToken,garage:dist,
+        min_distance:min_distance});
       }
     }
-    console.log(dist);
-    res.render("garages/foundgarage",{ body: req.body,by:"Location",geometry:geometry,maptoken: mapBoxToken,dist:dist,
-    min_distance:min_distance})
+  }
+  catch(err)
+  {
+    req.flash("err","Err: "+err);
+    res.redirect("/garage/find");
   }
 }
 
