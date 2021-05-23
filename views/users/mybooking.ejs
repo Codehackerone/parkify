@@ -19,7 +19,14 @@
 
         </div>
         <div class="col-6">
-
+            <b>Status</b>-<%=booking.status%><br>
+            <b>Start Time</b>-<%=new Date(booking.start_time*1000)%><br>
+            <b>End Time</b>-<%=new Date(booking.end_time*1000)%><br>
+            <% if(booking.status!=="Cancelled" && booking.status!=="Completed"){ %> 
+            <form action="/booking/cancel/<%=booking._id%>" method="POST">
+            <button type="submit" class="btn btn-danger">Cancel Booking</button>
+            </form>
+            <% } %>
         </div>
     </div>
 </div>
