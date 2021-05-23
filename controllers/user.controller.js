@@ -170,7 +170,7 @@ const renderBookings = async (req, res) => {
 
 const renderBooking=async(req,res)=>
 {
-  
+    res.send(req.params);
 }
 module.exports = {
   renderLogin,

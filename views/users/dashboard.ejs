@@ -24,6 +24,8 @@
     <form action="/booking/cancel/<%=booking._id%>" method="POST">
     <button type="submit" class="btn btn-danger">Cancel Booking</button>
     </form>
+    <br>
+    <a href="/users/booking/<%=booking._id%>" class="btn btn-info" style="color:white">View Booking</a>
     <% } %> 
     <hr>
   <% }if(!bookings){ %>
