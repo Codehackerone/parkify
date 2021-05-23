@@ -36,4 +36,7 @@ Router.route("/:id")
 
 Router.route("/apislot/:id").get(garageController.apiSlotInfo);
 
+Router.route("/findgarage")
+    .get(IsLoggedInMiddleware(),garageController.renderfindgarage)
+    
 module.exports = Router;
