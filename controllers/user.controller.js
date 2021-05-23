@@ -170,7 +170,15 @@ const renderBookings = async (req, res) => {
 
 const renderBooking=async(req,res)=>
 {
-    res.send(req.params);
+    var id=req.params.id;
+    var booking=await bookingService.FindBooking(id);
+    if(!booking){
+      req.flash("err", "No Booking Found");
+      res.redirect("/users/dashboard");
+    }
+    else{
+      res.send(booking);
+    }
 }
 module.exports = {
   renderLogin,

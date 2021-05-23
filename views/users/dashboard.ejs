@@ -21,10 +21,10 @@
     <b>Start Time</b>-<%=new Date(booking.start_time*1000)%><br>
     <b>End Time</b>-<%=new Date(booking.end_time*1000)%><br>
     <% if(booking.status!=="Cancelled"){ %> 
-    <form action="/booking/cancel/<%=booking._id%>" method="POST">
-    <button type="submit" class="btn btn-danger">Cancel Booking</button>
-    </form>
+    <form action="/booking/cancel/<%=booking._id%>" method="POST" id="cancel-<%=booking._id%>"></form>
     <br>
+    <a href="javascript:document.getElementById('cancel-<%=booking._id%>').submit();" 
+      class="btn btn-danger">Cancel Booking</a>
     <a href="/users/booking/<%=booking._id%>" class="btn btn-info" style="color:white">View Booking</a>
     <% } %> 
     <hr>
