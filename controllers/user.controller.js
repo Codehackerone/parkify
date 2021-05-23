@@ -1,5 +1,7 @@
 const userService = require("../services/user.service");
 const bookingService = require("../services/booking.service");
+const garageService=require("../services/garage.service");
+const slotService=require("../services/slot.service");
 const jwt = require("jsonwebtoken");
 
 let options = {
@@ -177,7 +179,9 @@ const renderBooking=async(req,res)=>
       res.redirect("/users/dashboard");
     }
     else{
-      res.send(booking);
+      var slot=await slotService.FindSlot(booking.slot_id);
+      var garage=await garageService.FindGarage(slot.garage_id);
+      res.render("users/mybooking",{ body: req.body, booking: booking ,slot:slot,garage:garage});
     }
 }
 module.exports = {

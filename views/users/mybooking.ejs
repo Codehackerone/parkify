@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Slot</title>
+    <%- include('../partials/header')%>
+    <%- include('../partials/navbar')%>
+</head>
+<body>
+    <%- include('../partials/alerts')%>
+    <div class="container">
+        <br><br>
+    <div class="row">
+        <div class="col-6">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title"><%= slot.name%> of Garage <%=garage.name%></h5>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-6">
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

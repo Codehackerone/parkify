@@ -57,4 +57,5 @@ Router.route("/bookings").get(
 
 Router.route("/booking/:id")
   .get(IsLoggedInMiddleware(),userController.renderBooking);
+  
 module.exports = Router;
