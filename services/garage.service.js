@@ -47,7 +47,7 @@ const ReturnCoords=async()=>
   return coords;
 }
 
-const DistanceCal=(lat1,lat2, lon1, lon2)=>
+const DistanceCal=(lat1,lon1, lat2, lon2)=>
 {   
   lon1 = lon1 * Math.PI / 180;
   lon2 = lon2 * Math.PI / 180;

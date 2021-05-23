@@ -11,10 +11,12 @@
     <%- include('../partials/alerts')%>
     <br>
     <div class="container">
-        <center><h1>Found Garages by <%=by%> near you</h1></center><br>
+        <center><h1>Found Garages by <%=by%> near you<br>
+            (Within <%=Math.round(min_distance*100)/100%> km radius)
+        </h1></center><br>
         <div id='map' style="width: auto; height: 350px;"></div>
     </div>
-    <%=coords%>
+    <%=dist%>
 </body>
 </html>
 <style>

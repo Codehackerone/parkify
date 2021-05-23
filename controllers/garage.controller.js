@@ -131,7 +131,20 @@ const rendergaragebyloc=async(req,res)=>
     var geometry = geoData.body.features[0].geometry;
     geometry.place_name=req.body.location;
     var coords=await garageService.ReturnCoords();
-    res.render("garages/foundgarage",{ body: req.body,by:"Location",geometry:geometry,maptoken: mapBoxToken,coords:coords})
+    var min_distance=10000000.0;
+    var dist={};
+    for (let coord of coords){
+      var distance=garageService.DistanceCal(geometry.coordinates[1],geometry.coordinates[0],coord.coordinates[1],coord.coordinates[0]);
+      console.log(distance);
+      if(distance<=min_distance)
+      {
+        dist=coord;
+        min_distance=distance;
+      }
+    }
+    console.log(dist);
+    res.render("garages/foundgarage",{ body: req.body,by:"Location",geometry:geometry,maptoken: mapBoxToken,dist:dist,
+    min_distance:min_distance})
   }
 }
 
