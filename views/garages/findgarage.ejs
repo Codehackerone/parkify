@@ -13,7 +13,12 @@
         <center><h1>Find Garage</h1></center><br>
 
         <form action="/garage/find/?_method=PUT" method="POST">
-            <button type="submit" class="btn btn-primary">Find</button>
+            <button type="submit" class="btn btn-primary">Find by IP</button>
+        </form>
+        <br><br>
+        <form action="/garage/find/?_method=PATCH" method="POST">
+            <input type="text" name="location" class="form-control"><br>
+            <button type="submit" class="btn btn-primary">Find by location</button>
         </form>
     </div>
 </body>

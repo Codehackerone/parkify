@@ -94,7 +94,7 @@ const renderfindgarage=async(req,res)=>
   res.render("garages/findgarage",{ body: req.body});
 }
 
-const renderfoundgarage=async(req,res)=>
+const rendergaragebyip=async(req,res)=>
 {
   if(req.ipv4!==undefined)
   {
@@ -110,7 +110,12 @@ const renderfoundgarage=async(req,res)=>
       console.log(error);
     });
   }
-  res.render("garages/foundgarage",{ body: req.body})
+  res.render("garages/foundgarage",{ body: req.body, by:"IP"})
+}
+
+const rendergaragebyloc=async(req,res)=>
+{
+  res.render("garages/foundgarage",{ body: req.body,by:"Location"})
 }
 
 module.exports = {
@@ -121,5 +126,6 @@ module.exports = {
   apiSlotInfo,
   deleteGarage,
   renderfindgarage,
-  renderfoundgarage
+  rendergaragebyip,
+  rendergaragebyloc
 };

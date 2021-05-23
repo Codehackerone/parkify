@@ -29,7 +29,8 @@ Router.route("/add")
 
 Router.route("/find")
   .get(IsLoggedInMiddleware(),garageController.renderfindgarage)
-  .put(IsLoggedInMiddleware(),getIpMiddleware,garageController.renderfoundgarage);
+  .put(IsLoggedInMiddleware(),getIpMiddleware,garageController.rendergaragebyip)
+  .patch(IsLoggedInMiddleware(),garageController.rendergaragebyloc)
 
 
 Router.route("/:id")
