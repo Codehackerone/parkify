@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Codehackerone/parkify#readme",
   "dependencies": {
     "@mapbox/mapbox-sdk": "^0.12.1",
+    "@supercharge/request-ip": "^1.1.2",
     "bcrypt": "^5.0.1",
     "cloudinary": "^1.25.1",
     "connect-mongo": "^3.2.0",

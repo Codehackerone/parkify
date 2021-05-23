@@ -3,6 +3,7 @@ const slotService = require("../services/slot.service");
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const mapBoxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
+var axios = require('axios');
 
 const renderAddGarage = (req, res) => {
   res.render("garages/newgarages", { body: req.body });
@@ -95,6 +96,20 @@ const renderfindgarage=async(req,res)=>
 
 const renderfoundgarage=async(req,res)=>
 {
+  if(req.ipv4!==undefined)
+  {
+    var config = {
+      method: 'get',
+      url: 'http://ip-api.com/json/'
+    };
+    axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
   res.render("garages/foundgarage",{ body: req.body})
 }
 

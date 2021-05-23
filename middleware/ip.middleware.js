@@ -1,7 +1,7 @@
 const RequestIp = require('@supercharge/request-ip')
 
 const getIpMiddleware = function (req, res, next) {  
-  req.ip = RequestIp.getClientIp(req)
+  if(RequestIp.getClientIp(req)!=="::1")req.ipv2 = RequestIp.getClientIp(req);
   next();
 }
 
