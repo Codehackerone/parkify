@@ -3,7 +3,7 @@ body {
   font-family: "Poppins", sans-serif;
   height: 100vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("/img/coverimg.jpg");
+    url("/img/coverimg.jpeg");
   background-size: cover;
   background-position: center;
   text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
