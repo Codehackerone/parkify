@@ -1,8 +1,9 @@
-const RequestIp = require('@supercharge/request-ip')
+const RequestIp = require("@supercharge/request-ip");
 
-const getIpMiddleware = function (req, res, next) {  
-  if(RequestIp.getClientIp(req)!=="::1")req.ipv2 = RequestIp.getClientIp(req);
+const getIpMiddleware = function (req, res, next) {
+  if (RequestIp.getClientIp(req) !== "::1")
+    req.ipv2 = RequestIp.getClientIp(req);
   next();
-}
+};
 
-module.exports=getIpMiddleware;
+module.exports = getIpMiddleware;

@@ -7,7 +7,7 @@ const garageController = require("../controllers/garage.controller");
 const IsLoggedInMiddleware = require("../middleware/login.middleware");
 const sanitizerMiddleware = require("../middleware/sanitizer.middleware");
 const IsAdminMiddleware = require("../middleware/isadmin.middleware");
-const getIpMiddleware=require("../middleware/ip.middleware");
+const getIpMiddleware = require("../middleware/ip.middleware");
 
 Router.route("/").get(
   IsLoggedInMiddleware(),
@@ -28,10 +28,13 @@ Router.route("/add")
   );
 
 Router.route("/find")
-  .get(IsLoggedInMiddleware(),garageController.renderfindgarage)
-  .put(IsLoggedInMiddleware(),getIpMiddleware,garageController.rendergaragebyip)
-  .patch(IsLoggedInMiddleware(),garageController.rendergaragebyloc)
-
+  .get(IsLoggedInMiddleware(), garageController.renderfindgarage)
+  .put(
+    IsLoggedInMiddleware(),
+    getIpMiddleware,
+    garageController.rendergaragebyip
+  )
+  .patch(IsLoggedInMiddleware(), garageController.rendergaragebyloc);
 
 Router.route("/:id")
   .get(IsLoggedInMiddleware(), garageController.renderGarage)

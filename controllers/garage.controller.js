@@ -3,7 +3,7 @@ const slotService = require("../services/slot.service");
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const mapBoxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
-var axios = require('axios');
+var axios = require("axios");
 
 const renderAddGarage = (req, res) => {
   res.render("garages/newgarages", { body: req.body });
@@ -89,77 +89,75 @@ const deleteGarage = async (req, res) => {
   }
 };
 
-const renderfindgarage=async(req,res)=>
-{
-  res.render("garages/findgarage",{ body: req.body});
-}
+const renderfindgarage = async (req, res) => {
+  res.render("garages/findgarage", { body: req.body });
+};
 
-const rendergaragebyip=async(req,res)=>
-{
-  if(req.ipv4!==undefined)
-  {
+const rendergaragebyip = async (req, res) => {
+  if (req.ipv4 !== undefined) {
     var config = {
-      method: 'get',
-      url: 'http://ip-api.com/json/'
+      method: "get",
+      url: "http://ip-api.com/json/",
     };
     axios(config)
-    .then(function (response) {
-      console.log(JSON.stringify(response.data));
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
-  res.render("garages/foundgarage",{ body: req.body, by:"IP"})
-}
+  res.render("garages/foundgarage", { body: req.body, by: "IP" });
+};
 
-const rendergaragebyloc=async(req,res)=>
-{
-  try{
-    if(!req.body.location)
-    {
-      req.flash('err','location not given');
-      res.redirect('/garage/find');
-    }
-    else
-    {
+const rendergaragebyloc = async (req, res) => {
+  try {
+    if (!req.body.location) {
+      req.flash("err", "location not given");
+      res.redirect("/garage/find");
+    } else {
       const geoData = await geocoder
-          .forwardGeocode({
-            query: req.body.location,
-            limit: 1,
-          })
-          .send();
+        .forwardGeocode({
+          query: req.body.location,
+          limit: 1,
+        })
+        .send();
       var geometry = geoData.body.features[0].geometry;
-      geometry.place_name=req.body.location;
-      var garages=await garageService.AllGarages();
-      var min_distance=10000000.0;
-      var dist={};
-      for (let garage of garages){
-        var distance=garageService.DistanceCal(geometry.coordinates[1],geometry.coordinates[0],
-          garage.geometry.coordinates[1],garage.geometry.coordinates[0]);
-        if(distance<=min_distance)
-        {
-          dist=garage;
-          min_distance=distance;
+      geometry.place_name = req.body.location;
+      var garages = await garageService.AllGarages();
+      var min_distance = 10000000.0;
+      var dist = {};
+      for (let garage of garages) {
+        var distance = garageService.DistanceCal(
+          geometry.coordinates[1],
+          geometry.coordinates[0],
+          garage.geometry.coordinates[1],
+          garage.geometry.coordinates[0]
+        );
+        if (distance <= min_distance) {
+          dist = garage;
+          min_distance = distance;
         }
       }
-      if(min_distance>1000.0)
-      {
-        req.flash("err","Sorry! No garages found within 1000.0 km radius.")
+      if (min_distance > 1000.0) {
+        req.flash("err", "Sorry! No garages found within 1000.0 km radius.");
         res.redirect("/garage/find");
-      }
-      else{
-        res.render("garages/foundgarage",{ body: req.body,by:"Location",geometry:geometry,maptoken: mapBoxToken,garage:dist,
-        min_distance:min_distance});
+      } else {
+        res.render("garages/foundgarage", {
+          body: req.body,
+          by: "Location",
+          geometry: geometry,
+          maptoken: mapBoxToken,
+          garage: dist,
+          min_distance: min_distance,
+        });
       }
     }
-  }
-  catch(err)
-  {
-    req.flash("err","Err: "+err);
+  } catch (err) {
+    req.flash("err", "Err: " + err);
     res.redirect("/garage/find");
   }
-}
+};
 
 module.exports = {
   renderAddGarage,
@@ -170,5 +168,5 @@ module.exports = {
   deleteGarage,
   renderfindgarage,
   rendergaragebyip,
-  rendergaragebyloc
+  rendergaragebyloc,
 };
