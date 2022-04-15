@@ -3,6 +3,8 @@
 A simple way to solve your complex parking issues.
 
 ---
+![cover image](https://github.com/Codehackerone/parkify/blob/main/public/img/coverpage.png)
+---
 ## Requirements
 
 For development, you will only need Node.js and a node global package, npm, installed in your environement.
