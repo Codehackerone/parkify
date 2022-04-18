@@ -1,47 +1,47 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200&display=swap');
 body {
-  font-family: "Poppins", sans-serif;
-  height: 100vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("/img/coverimg.jpg");
-  background-size: cover;
-  background-position: center;
-  text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
-  box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('/img/coverimg.jpg');
+    background-size: cover;
+    background-position: center;
+    text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
 }
 .cover-container {
-  max-width: 60vw;
+    max-width: 60vw;
 }
 
 .nav-link {
-  padding: 0.25rem 0;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.5);
-  margin-left: 1rem;
-  border-bottom: 0.25rem solid transparent;
+    padding: 0.25rem 0;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.5);
+    margin-left: 1rem;
+    border-bottom: 0.25rem solid transparent;
 }
 
 .nav-link:hover {
-  color: rgba(255, 255, 255, 0.5);
-  border-bottom-color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.5);
+    border-bottom-color: rgba(255, 255, 255, 0.5);
 }
 
 .nav-link.active {
-  color: white;
-  border-bottom-color: white;
+    color: white;
+    border-bottom-color: white;
 }
 
 .btn-secondary,
 .btn-secondary:hover {
-  color: #333;
-  text-shadow: none;
+    color: #333;
+    text-shadow: none;
 }
 .github-link {
-  color: white;
-  text-decoration: none;
-  transition: 0.5s;
+    color: white;
+    text-decoration: none;
+    transition: 0.5s;
 }
 .github-link:hover {
-  color: white;
-  text-decoration: underline;
+    color: white;
+    text-decoration: underline;
 }
