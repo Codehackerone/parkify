@@ -3,7 +3,7 @@ const User = require('../models/user.model');
 
 /* ------------ Authentication Middleware ----------- */
 
-// IsloggedInMiddleware ... receives group as parameter and validates the user from jwt token stored in cookies
+// IsloggedInMiddleware ... validates the user from jwt token stored in cookies
 const IsLoggedInMiddleware = () => {
     return async (req, res, next) => {
         // Access token from cookies
