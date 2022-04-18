@@ -2,11 +2,16 @@ const slotService = require("../services/slot.service");
 const garageService = require("../services/garage.service");
 const bookingService = require("../services/booking.service");
 
+/* ------------ Controllers ----------- */
+
+//renderAddSlot... renders add slot page
 const renderAddSlot = (req, res) => {
   var garage_id = req.params.id;
   res.render("slots/addslot", { garage_id: garage_id, body: req.body });
 };
 
+
+//addSlot... adds a new slot to the garage
 const addSlot = async (req, res) => {
   try {
     const result = await slotService.AddSlot(req.body);
@@ -18,6 +23,7 @@ const addSlot = async (req, res) => {
   }
 };
 
+//renderSlot... renders the slot page
 const renderSlot = async (req, res) => {
   var slot_id = req.params.id;
   const slot = await slotService.FindSlot(slot_id);
@@ -41,6 +47,7 @@ const renderSlot = async (req, res) => {
   }
 };
 
+//deleteSlot... deletes a slot from the garage
 const deleteSlot = async (req, res) => {
   var slot_id = req.params.id;
   try {
@@ -52,6 +59,7 @@ const deleteSlot = async (req, res) => {
   }
 };
 
+//renderSlot... renders the slot page
 const renderSlots = async (req, res) => {
   var garage_id = req.params.id;
   var garage = await garageService.FindGarage(garage_id);
@@ -73,6 +81,7 @@ const renderSlots = async (req, res) => {
   }
 };
 
+//findBookings... returns all bookings for a slot
 const findBookings = async (id) => {
   var slot = await slotService.FindSlot(id);
   if (!slot) return "Slot Not Found";
@@ -85,6 +94,7 @@ const findBookings = async (id) => {
   return arr_booking;
 };
 
+//apiBooking... returns all booking details for a slot
 const apiBooking = async (req, res) => {
   var slot_id = req.params.id;
   var arr_booking = await findBookings(slot_id);

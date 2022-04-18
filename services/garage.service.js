@@ -1,6 +1,8 @@
 const Garage = require("../models/garage.model");
 const Slot = require("../models/slot.model");
 const Booking = require("../models/booking.model");
+
+//Addgarage... receives garage object and creates new garage document in the DB
 const AddGarage = async (garageBody) => {
   try {
     return await Garage.create(garageBody);
@@ -9,6 +11,7 @@ const AddGarage = async (garageBody) => {
   }
 };
 
+//FindGarage... receives garage id and returns garage document
 const FindGarage = async (id) => {
   try {
     const garage = await Garage.findById(id);
@@ -19,10 +22,12 @@ const FindGarage = async (id) => {
   }
 };
 
+//AllGarages... returns all garage documents
 const AllGarages = async () => {
   return await Garage.find({});
 };
 
+//DeleteGarage... receives garage id and deletes garage document from the DB
 const DeleteGarage = async (id) => {
   var garage = await FindGarage(id);
   if (!garage) throw "Garage not found";
@@ -36,6 +41,7 @@ const DeleteGarage = async (id) => {
   await Garage.findByIdAndDelete(id);
 };
 
+//ReturnCoords... returns coordinates of all garages
 const ReturnCoords=async()=>
 {
   const garages=await AllGarages();
@@ -47,6 +53,7 @@ const ReturnCoords=async()=>
   return coords;
 }
 
+// DistanceCal... retutrns distance between two points on earth
 const DistanceCal=(lat1,lon1, lat2, lon2)=>
 {   
   lon1 = lon1 * Math.PI / 180;

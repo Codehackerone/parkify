@@ -3,13 +3,17 @@ const Slot = require("../models/slot.model");
 const User = require("../models/user.model");
 const Transaction = require("../models/transaction.model");
 
+//NewBooking... creates a new booking and adds it to the slot.
 const NewBooking = async (bookingBody) => {
   try {
     const slot = await Slot.findById(bookingBody.slot_id);
+    //check if start time is less than end time
     if (bookingBody.start_time >= bookingBody.end_time) {
       throw "Please Choose a Correct Start and End Date!";
     }
     const all_bookings = slot.bookings;
+
+    //check if the slot is already booked
     if (all_bookings.length != 0) {
       for (var i = 0; i < all_bookings.length; i++) {
         var booking = await Booking.findById(all_bookings[i]);
@@ -28,6 +32,8 @@ const NewBooking = async (bookingBody) => {
     }
     const user = await User.findById(bookingBody.user_id);
     if (!user) throw "User doesnt Exist";
+
+    //check if user has enough money
     if (bookingBody.amount > user.money) throw "Insufficient Funds!!";
     const result = await Booking.create(bookingBody);
     slot.bookings.push(result);
@@ -36,6 +42,8 @@ const NewBooking = async (bookingBody) => {
     money = money - parseFloat(bookingBody.amount);
     user.money = money;
     await user.save();
+
+    //create transaction
     const transaction = {
       user_id: user._id,
       type: "debit",
@@ -50,11 +58,13 @@ const NewBooking = async (bookingBody) => {
   }
 };
 
+//FindBooking... finds a booking by id
 const FindBooking = async (id) => {
   const booking = await Booking.findOne({ _id: id });
   return booking;
 };
 
+//DeleteBooking... deletes a booking by id
 const DeleteBooking = async (id) => {
   try {
     const booking = await Booking.findById(id);
@@ -65,6 +75,7 @@ const DeleteBooking = async (id) => {
   }
 };
 
+//apiMoney... returns price of the slot
 const apiMoney = async (slot_id) => {
   try {
     var slot = await Slot.findById(slot_id);
@@ -74,6 +85,7 @@ const apiMoney = async (slot_id) => {
   }
 };
 
+//FindByUser... finds all bookings by user
 const FindByUser = async (id) => {
   try {
     var bookings = await Booking.find({ user_id: id });
@@ -83,12 +95,17 @@ const FindByUser = async (id) => {
   }
 };
 
+//cancelBooking... cancels a booking by id
 const cancelBooking = async (id) => {
   var booking = await Booking.findById(id);
   if (!booking) throw "Booking not Found";
+
+  //check if booking is already cancelled
   else if (booking.status === "Cancelled") {
     throw "Booking already Cancelled";
-  } else if (booking.end_time <= new Date().getTime() / 1000) {
+  }
+  //check if booking is already completed
+  else if (booking.end_time <= new Date().getTime() / 1000) {
     booking.status = "Completed";
     await booking.save();
     throw "Booking already Completed.";
@@ -97,9 +114,13 @@ const cancelBooking = async (id) => {
     if (!user) throw "User not found";
     else {
       booking.status = "Cancelled";
+
+      //calculate refund
       var money = parseFloat(user.money);
       money = money + parseFloat(booking.amount / 2);
       user.money = money;
+
+      //create transaction
       const transaction = {
         user_id: user._id,
         type: "credit",
@@ -114,6 +135,7 @@ const cancelBooking = async (id) => {
   }
 };
 
+//completeBooking... completes a booking by id
 const completeBooking = async (id) => {
   var booking = await Booking.findById(id);
   if (!booking) return;

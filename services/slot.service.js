@@ -2,6 +2,7 @@ const Slot = require("../models/slot.model");
 const Garage = require("../models/garage.model");
 const Booking = require("../models/booking.model");
 
+//AddSlot... receives slot object and creates new slot document in the DB
 const AddSlot = async (slotBody) => {
   try {
     const result = await Slot.create(slotBody);
@@ -14,6 +15,7 @@ const AddSlot = async (slotBody) => {
   }
 };
 
+//FindSlot... receives slot id and returns slot document
 const FindSlot = async (id) => {
   try {
     const slot = await Slot.findOne({ _id: id });
@@ -23,6 +25,7 @@ const FindSlot = async (id) => {
   }
 };
 
+//DeleteSlot.. receives slot id and deletes slot document from the DB
 const DeleteSlot = async (id) => {
   try {
     const slot = await Slot.findById(id);

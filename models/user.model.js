@@ -48,7 +48,8 @@ const userSchema = new Schema(
   }
 );
 
-userSchema.pre("save", async function (next) {
+// hashes the password before saving using bcrypt
+userSchema.pre("save", async function (next) { 
   if (!this.isModified || !this.isNew) {
     next();
   } else this.isModified("password");

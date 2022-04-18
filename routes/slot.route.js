@@ -1,9 +1,15 @@
+/* ------------ Imports  ----------- */
+
 const express = require("express");
 const Router = express.Router();
 const slotController = require("../controllers/slot.controller");
 const IsLoggedInMiddleware = require("../middleware/login.middleware");
 const sanitizerMiddleware = require("../middleware/sanitizer.middleware");
 const IsAdminMiddleware = require("../middleware/isadmin.middleware");
+
+
+/* ------------ Endpoint Definitions ----------- */
+
 
 Router.route("/add/:id")
   .get(

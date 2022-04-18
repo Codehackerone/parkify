@@ -5,11 +5,17 @@ const nodemailer = require("nodemailer");
 const helper = require("../utils/helper");
 const Transaction = require("../models/transaction.model");
 
+/* ------------ JWT Configs ----------- */
+
 const expiry_length = parseInt(process.env.EXPIRY) * 86400;
 const jwt_headers = {
   algorithm: "HS256",
   expiresIn: expiry_length,
 };
+
+/* ------------ Services ----------- */
+
+//sendmail... sends email to the user using nodemailer
 async function sendmail(to, subject, otp) {
   var transporter = nodemailer.createTransport({
     service: "gmail",
@@ -18,6 +24,7 @@ async function sendmail(to, subject, otp) {
       pass: process.env.PASS,
     },
   });
+  // mail configurations
   var mailOptions = {
     from: process.env.EMAIL,
     to: to,
@@ -33,6 +40,7 @@ async function sendmail(to, subject, otp) {
   });
 }
 
+// Register... receives user object and creates new user document in the DB
 const Register = async (userBody) => {
   try {
     const user = await User.create(userBody);
@@ -50,6 +58,7 @@ const Register = async (userBody) => {
   }
 };
 
+//GenerateOtp... generates otp, encodes it by jwt and sends it to the user's email
 const generateOtp = async (username) => {
   var otp = helper.getRandomOtp(6);
   const user = await User.findOne({ username });
@@ -67,6 +76,7 @@ const generateOtp = async (username) => {
   };
 };
 
+// Login... receives email, password and validates the user login
 const Login = async (username, password) => {
   const user = await User.findOne({ username });
 
@@ -87,6 +97,7 @@ const Login = async (username, password) => {
   };
 };
 
+//verified... sets the verified field to true
 const verified = async (username) => {
   const user = await User.findOne({ username });
   if (!user) throw "User Doesnt Exist";
@@ -94,6 +105,7 @@ const verified = async (username) => {
   await user.save();
 };
 
+//updateImage... updates the user's profile picture
 const updateImage = async (userid, path) => {
   try {
     await User.findOneAndUpdate({ _id: userid }, { picture_url: path });
@@ -102,6 +114,7 @@ const updateImage = async (userid, path) => {
   }
 };
 
+//addMoney... adds money to the user's wallet
 const addMoney = async (user_id, added_money) => {
   const user = await User.findById(user_id);
   if (!user) throw "User Doesnt Exist";
@@ -120,6 +133,7 @@ const addMoney = async (user_id, added_money) => {
   }
 };
 
+//getTransactions... returns the user's transactions
 const getTransactions = async (id) => {
   var transactions = await Transaction.find({ user_id: id });
   return transactions;

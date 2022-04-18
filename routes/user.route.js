@@ -1,3 +1,4 @@
+/* ------------ Imports  ----------- */
 const express = require("express");
 const Router = express.Router();
 const multer = require("multer");
@@ -6,6 +7,9 @@ const upload = multer({ storage });
 const userController = require("../controllers/user.controller");
 const IsLoggedInMiddleware = require("../middleware/login.middleware");
 const sanitizerMiddleware = require("../middleware/sanitizer.middleware");
+
+
+/* ------------ Endpoint Definitions ----------- */
 
 Router.route("/register")
   .get(userController.renderRegister)

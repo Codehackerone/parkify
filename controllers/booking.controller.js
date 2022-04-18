@@ -2,6 +2,9 @@ const bookingService = require("../services/booking.service");
 const slotService = require("../services/slot.service");
 const garageService = require("../services/garage.service");
 
+/* ------------ Controllers ----------- */
+
+//renderNewBooking... renders the new booking page
 const renderNewBooking = async (req, res) => {
   var slot_id = req.params.id;
   var slot = await slotService.FindSlot(slot_id);
@@ -24,6 +27,7 @@ const renderNewBooking = async (req, res) => {
   }
 };
 
+//newBooking... creates a new booking calculating the price, and redirects to the dashboard
 const newBooking = async (req, res) => {
   req.body.start_time = new Date(req.body.start_datetime).getTime() / 1000;
   req.body.end_time = new Date(req.body.end_datetime).getTime() / 1000;
@@ -40,6 +44,7 @@ const newBooking = async (req, res) => {
   }
 };
 
+//renderBooking... renders the booking page
 const renderBooking = async (req, res) => {
   var booking_id = req.params.id;
   const booking = await bookingService.FindBooking(booking_id);
@@ -51,6 +56,7 @@ const renderBooking = async (req, res) => {
   }
 };
 
+//deleteBooking... deletes a booking and redirects to the dashboard
 const deleteBooking = async (req, res) => {
   var booking_id = req.params.id;
   try {
@@ -63,6 +69,7 @@ const deleteBooking = async (req, res) => {
   }
 };
 
+//cancelBooking... cancels a booking and redirects to the dashboard
 const cancelBooking = async (req, res) => {
   var id = req.params.id;
   try {

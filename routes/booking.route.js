@@ -1,8 +1,12 @@
+/* ------------ Imports  ----------- */
+
 const express = require("express");
 const Router = express.Router();
 const bookingController = require("../controllers/booking.controller");
 const IsLoggedInMiddleware = require("../middleware/login.middleware");
 const sanitizerMiddleware = require("../middleware/sanitizer.middleware");
+
+/* ------------ Endpoint Definitions ----------- */
 
 Router.route("/new/:id")
   .get(IsLoggedInMiddleware(), bookingController.renderNewBooking)

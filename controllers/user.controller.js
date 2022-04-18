@@ -4,6 +4,9 @@ const garageService=require("../services/garage.service");
 const slotService=require("../services/slot.service");
 const jwt = require("jsonwebtoken");
 
+/* ------------ Configs ----------- */
+
+// cookie options
 let options = {
   path: "/",
   sameSite: true,
@@ -17,12 +20,21 @@ let options_otp = {
   maxAge: 1000 * 60 * 5,
   httpOnly: true,
 };
+
+/* ------------ Controllers ----------- */
+
+
+//renderRegister... renders the register page
 const renderRegister = (req, res) => {
   res.render("users/register");
 };
+
+//renderLogin... renders the login page
 const renderLogin = (req, res) => {
   res.render("users/login");
 };
+
+//renderDashboard... renders the dashboard page
 const renderDashboard = async (req, res) => {
   var bookings = await bookingService.FindByUser(req.body.user_id);
   for (let booking of bookings) {
@@ -35,9 +47,13 @@ const renderDashboard = async (req, res) => {
   }
   res.render("users/dashboard", { body: req.body, bookings: bookings });
 };
+
+//renderAddMoney... renders the add money page
 const renderAddMoney = (req, res) => {
   res.render("users/addmoney", { money: req.body.money, body: req.body });
 };
+
+//renderVerify... renders the otp verify page
 const renderVerify = async (req, res) => {
   if (req.body.verified === true) {
     res.send("Already Verified");
@@ -47,6 +63,8 @@ const renderVerify = async (req, res) => {
     res.render("users/verify", { email: req.body.email });
   }
 };
+
+//renderRegister... renders the register page
 const register = async (req, res) => {
   try {
     const result = await userService.Register(req.body);
@@ -59,6 +77,7 @@ const register = async (req, res) => {
   }
 };
 
+//sendOtp... sends otp to the user
 const sendOtp = async (username) => {
   try {
     var gen_otp = await userService.generateOtp(username);
@@ -68,6 +87,7 @@ const sendOtp = async (username) => {
   }
 };
 
+// login... logs in the user
 const login = async (req, res) => {
   try {
     const result = await userService.Login(
@@ -83,12 +103,14 @@ const login = async (req, res) => {
   }
 };
 
+// logout... logs out the user
 const logout = (req, res) => {
   res.clearCookie("isloggedin");
   req.flash("success", "Logged out Successfully.");
   res.redirect("/");
 };
 
+//verify.. verifies the otp and logs in the user
 const verify = async (req, res) => {
   var otp = req.body.otp;
   let token = req.cookies["otp"];
@@ -106,10 +128,12 @@ const verify = async (req, res) => {
   }
 };
 
+//renderImageChange... renders the upload image page
 const renderImage = (req, res) => {
   res.render("users/uploadimage", { body: req.body });
 };
 
+//upload Image... uploads the image
 const uploadImage = async (req, res) => {
   var path = req.file["path"];
   var userid = req.body.user_id;
@@ -124,6 +148,7 @@ const uploadImage = async (req, res) => {
   }
 };
 
+//addMoney... adds money to the user
 const addMoney = async (req, res) => {
   var add_money = req.body.added_money;
   try {
@@ -136,6 +161,7 @@ const addMoney = async (req, res) => {
   }
 };
 
+//apiOtp... compares the given otp with the otp stored in cookie
 const apiOtp = (req, res) => {
   var str = req.params.value;
   let token = req.cookies["otp"];
@@ -144,11 +170,13 @@ const apiOtp = (req, res) => {
   else res.send("0");
 };
 
+//resendOtp... resends the otp to the user
 const resendOTP = (req, res) => {
   req.flash("alert", "Your OTP has been resent successfully to your email.");
   res.redirect("/users/verify");
 };
 
+//renderTransactions... renders the transactions page
 const renderTransactions = async (req, res) => {
   var transactions = await userService.getTransactions(req.body.user_id);
   res.render("users/transactions", {
@@ -157,6 +185,7 @@ const renderTransactions = async (req, res) => {
   });
 };
 
+//renderBookings... renders the booking page
 const renderBookings = async (req, res) => {
   var bookings = await bookingService.FindByUser(req.body.user_id);
   for (let booking of bookings) {
@@ -170,6 +199,7 @@ const renderBookings = async (req, res) => {
   res.render("users/bookings", { body: req.body, bookings: bookings });
 };
 
+//renderBooking... renders the booking details page
 const renderBooking=async(req,res)=>
 {
     var id=req.params.id;

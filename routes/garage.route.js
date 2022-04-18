@@ -1,3 +1,5 @@
+/* ------------ Imports  ----------- */
+
 const express = require("express");
 const Router = express.Router();
 const multer = require("multer");
@@ -8,6 +10,8 @@ const IsLoggedInMiddleware = require("../middleware/login.middleware");
 const sanitizerMiddleware = require("../middleware/sanitizer.middleware");
 const IsAdminMiddleware = require("../middleware/isadmin.middleware");
 const getIpMiddleware=require("../middleware/ip.middleware");
+
+/* ------------ Endpoint Definitions ----------- */
 
 Router.route("/").get(
   IsLoggedInMiddleware(),
