@@ -1,10 +1,19 @@
 # Parkify
 
-A simple way to solve your complex parking issues.
+Hasslefree way to book your parking space with easy cancellations and timeline extensions
 
 ---
 ![cover image](https://github.com/Codehackerone/parkify/blob/main/public/img/coverpage.png)
 ---
+## Why Parkify?
+
+The application will make it easier for the drivers to find and pre-book their slots at the parking locations. The application will also save the frustration of the drivers who at times out of urgency park their cars on the street itself, which further adds to the traffic in the locality. With the use of the application, the business professionals will not have to keep an extra time just for parking their car between the meetings and will plan theirs in a much better way.
+
+
+## Built With
+
+This application is built on nodeJS, typed in javascript. Vanilla html-css-js is used to built the frontend.
+
 ## Requirements
 
 For development, you will only need Node.js and a node global package, npm, installed in your environement.
@@ -42,13 +51,13 @@ If you need to update `npm`, you can make it using `npm`! Cool right? After runn
 
 ---
 
-## Install
+## Installation
 
     $ git clone https://github.com/codehackerone/parkify
     $ cd parkify
     $ npm install
 
-## Configure environmental variables
+### Configure environmental variables
 
 Create a `.env` file then edit it with your settings. You will need:
 
@@ -65,8 +74,31 @@ Create a `.env` file then edit it with your settings. You will need:
 -   CLOUDINARY_SECRET=[your_cloudinary_secret]
 -   MAPBOX_TOKEN=[your_mapbox_project]
 
-## Running the project
+### Running the project
 
     $ npm start
         or
     $ npx nodemon
+
+---
+
+## License
+
+```Parkify``` is available under the MIT license. See the LICENSE file for more info.
+
+## Contributing
+
+
+1. Find an issue to work on from [here](https://github.com/codehackerone/parkify/issues)
+2. Ask the owner/maintainer for permission to work on the issue.
+3. Fork this repository. [For help, click here](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
+4. Clone the forked repository in your local machine [For help, click here](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
+5. Create a new branch [For help, click here](https://github.com/Kunena/Kunena-Forum/wiki/Create-a-new-branch-with-git-and-manage-branches)
+6. Add and commit your changes to the new branch [For help, click here](https://stackoverflow.com/questions/14655816/how-to-commit-changes-to-another-pre-existent-branch#:~:text=First%2C%20checkout%20to%20your%20new,show%20up%20on%20the%20remote.)
+7. Create a Pull Request, add proper description, screenshots, comments and ask a review from owner/maintainer [For help, click here](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)
+8. The owner/developer will merge the Pull Request if it aligns with the practises we follow and is valid. One should not merge, and ask for a reviewer to merge it.
+
+Please read `CODE_OF_CONDUCT.md` for details on the code of conduct, and the process for submitting pull requests.
+
+ ---  
+This repo is crafted with <span style="color: #8b0000;">&hearts;</span> and owned/maintained by <a href="https://github.com/codehackerone">@codehackerone</a>.
