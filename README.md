@@ -7,7 +7,7 @@ Hasslefree way to book your parking space with easy cancellations and timeline e
 ---
 ## Why Parkify?
 
-The application will make it easier for the drivers to find and pre-book their slots at the parking locations. The application will also save the frustration of the drivers who at times out of urgency park their cars on the street itself, which further adds to the traffic in the locality. With the use of the application, the business professionals will not have to keep an extra time just for parking their car between the meetings and will plan theirs in a much better way.
+The application will make it easier for the drivers to find and pre-book their slots at the parking locations. The application will also save the frustration of the drivers who at times out of urgency park their cars on the street itself, which further adds to the traffic in the locality. With the use of the application, business professionals can focus on their daily tasks and not worry about their parking space.
 
 
 ## Built With
