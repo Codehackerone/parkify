@@ -101,4 +101,4 @@ Create a `.env` file then edit it with your settings. You will need:
 Please read `CODE_OF_CONDUCT.md` for details on the code of conduct, and the process for submitting pull requests.
 
  ---  
-This repo is crafted with <span style="color: #8b0000;">&hearts;</span> and owned/maintained by <a href="https://github.com/codehackerone">@codehackerone</a>.
+This repo is crafted with <span style="color: #8b0000;">&hearts;</span> and owned by <a href="https://github.com/codehackerone">@codehackerone</a> and maintained by <a href="https://github.com/codehackerone">@codehackerone</a>, <a href="https://github.com/sbk2k1">@sbk2k1</a>, <a href="https://github.com/AmitSamui">@AmitSamui</a>, <a href="https://github.com/AryaChakraborty">@AryaChakraborty</a>.
