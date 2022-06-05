@@ -18,7 +18,7 @@
     <img src="https://img.shields.io/badge/license-MIT-brightgreen" alt="license MIT"/>
     <img src="https://img.shields.io/github/issues-pr-raw/codehackerone/parkify.svg" />
     <img src="https://img.shields.io/github/issues-raw/codehackerone/parkify.svg"/>
-    <img src="https://img.shields.io/badge/author-Soumyajit%20Datta-orange" alt="author Soumyajit Datta"/>
+    <img src="https://img.shields.io/badge/author-Soumyajit%20Datta-orange" alt="author codehackerone"/>
 </p>
 </div>
 <br>
