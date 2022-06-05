@@ -1,7 +1,17 @@
 <!--# Parkify-->
 <div align="center">
-    <img alt="PARKIFY_LOGO" src="public/img/logo-black.png" height="100" /><br>
-    <img alt="PARKIFY_TEXT" src="public/img/logo-text-black.png" height="40"/><br><br>
+<picture>
+  <source srcset="https://res.cloudinary.com/codehackerone/image/upload/v1654404920/Parkify/logo-white_em2e4o.png" media="(prefers-color-scheme: dark)">
+  <img alt="PARKIFY_LOGO" id="logo-dark" src="https://res.cloudinary.com/codehackerone/image/upload/v1654404897/Parkify/logo-black_y6ungi.png" height="100" />
+</picture>
+    <!--<img alt="PARKIFY_LOGO" id="logo-dark" src="public/img/logo-black.png" height="100" />-->
+    <br>
+<!--     <img alt="PARKIFY_TEXT" id="logo-white" src="public/img/logo-text-black.png" height="40"/> -->
+<picture>
+  <source srcset="https://res.cloudinary.com/codehackerone/image/upload/v1654404904/Parkify/logo-text-white_jqhdsf.png" media="(prefers-color-scheme: dark)">
+  <img alt="PARKIFY_TEXT" id="logo-dark" src="https://res.cloudinary.com/codehackerone/image/upload/v1654404900/Parkify/logo-text-black_qnvhtr.png" height="40" />
+</picture>  
+<br><br>
     <span style="font-weight: bold;">&#60;/&#62;</span> with <span style="color: #8b0000;">&hearts;</span> by <a href="https://github.com/codehackerone">@codehackerone</a>.<br><br>
 <p align="center">
     <img src="https://img.shields.io/badge/version-1.0.0-yellowgreen" alt="version 1.0.0"/>
