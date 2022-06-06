@@ -1,14 +1,37 @@
-# Parkify
+<!--# Parkify-->
+<div align="center">
+<picture>
+  <source srcset="https://res.cloudinary.com/codehackerone/image/upload/v1654404920/Parkify/logo-white_em2e4o.png" media="(prefers-color-scheme: dark)">
+  <img alt="PARKIFY_LOGO" id="logo-dark" src="https://res.cloudinary.com/codehackerone/image/upload/v1654404897/Parkify/logo-black_y6ungi.png" height="100" />
+</picture>
+    <!--<img alt="PARKIFY_LOGO" id="logo-dark" src="public/img/logo-black.png" height="100" />-->
+    <br>
+<!--     <img alt="PARKIFY_TEXT" id="logo-white" src="public/img/logo-text-black.png" height="40"/> -->
+<picture>
+  <source srcset="https://res.cloudinary.com/codehackerone/image/upload/v1654404904/Parkify/logo-text-white_jqhdsf.png" media="(prefers-color-scheme: dark)">
+  <img alt="PARKIFY_TEXT" id="logo-dark" src="https://res.cloudinary.com/codehackerone/image/upload/v1654404900/Parkify/logo-text-black_qnvhtr.png" height="40" />
+</picture>  
+<br><br>
+    <span style="font-weight: bold;">&#60;/&#62;</span> with <span style="color: #8b0000;">&hearts;</span> by <a href="https://github.com/codehackerone">@codehackerone</a>.<br><br>
+<p align="center">
+    <img src="https://img.shields.io/badge/version-1.0.0-yellowgreen" alt="version 1.0.0"/>
+    <img src="https://img.shields.io/badge/license-MIT-brightgreen" alt="license MIT"/>
+    <img src="https://img.shields.io/github/issues-pr-raw/codehackerone/parkify.svg" />
+    <img src="https://img.shields.io/github/issues-raw/codehackerone/parkify.svg"/>
+    <img src="https://img.shields.io/badge/author-Codehackerone-orange" alt="author codehackerone"/>
+</p>
+</div>
+<br>
 
-Hasslefree way to book your parking space with easy cancellations and timeline extensions
+> Hasslefree way to book your parking space with easy cancellations and timeline extensions<br>
 
 ---
-
-## ![cover image](https://github.com/Codehackerone/parkify/blob/main/public/img/coverpage.png)
-
+![cover image](https://github.com/Codehackerone/parkify/blob/main/public/img/coverpage.png)
+---
 ## Why Parkify?
 
 The application will make it easier for the drivers to find and pre-book their slots at the parking locations. The application will also save the frustration of the drivers who at times out of urgency park their cars on the street itself, which further adds to the traffic in the locality. With the use of the application, business professionals can focus on their daily tasks and not worry about their parking space.
+
 
 ## Built With
 
@@ -67,12 +90,13 @@ Create a `.env` file then edit it with your settings. You will need:
 -   JWT_SECRET=[your_jwt_secret]
 -   EXPIRY=[your_jwt_expiry_time]
 -   SECRET=[your_secret_for_mongostore]
--   EMAIL=[your_email_address]
--   PASS=[your_email_password]
 -   CLOUDINARY_CLOUD_NAME=[your_cloudinary_cloud_name]
 -   CLOUDINARY_KEY=[your_cloudinary_key]
 -   CLOUDINARY_SECRET=[your_cloudinary_secret]
 -   MAPBOX_TOKEN=[your_mapbox_project]
+-   X_RAPIDAPI_HOST=[your_rapidapi_sendgrid_host]
+-   X_RAPIDAPI_KEY=[your_rapiapi_sendgrid_key]
+-   SENDGRID_EMAIL=[no-reply@your_domain.com]
 
 ### Running the project
 
@@ -84,9 +108,10 @@ Create a `.env` file then edit it with your settings. You will need:
 
 ## License
 
-`Parkify` is available under the MIT license. See the LICENSE file for more info.
+```Parkify``` is available under the MIT license. See the LICENSE file for more info.
 
 ## Contributing
+
 
 1. Find an issue to work on from [here](https://github.com/codehackerone/parkify/issues)
 2. Ask the owner/maintainer for permission to work on the issue.
@@ -99,6 +124,5 @@ Create a `.env` file then edit it with your settings. You will need:
 
 Please read `CODE_OF_CONDUCT.md` for details on the code of conduct, and the process for submitting pull requests.
 
----
-
-This repo is crafted with <span style="color: #8b0000;">&hearts;</span> and owned/maintained by <a href="https://github.com/codehackerone">@codehackerone</a>.
+ ---  
+This repo is owned/maintained by <a href="https://github.com/codehackerone">@codehackerone</a>.
