@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
 const helper = require('../utils/helper');
 const Transaction = require('../models/transaction.model');
+const axios = require('axios');
 
 /* ------------ JWT Configs ----------- */
 
@@ -17,27 +18,24 @@ const jwt_headers = {
 
 //sendmail... sends email to the user using nodemailer
 async function sendmail(to, subject, otp) {
-    var transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: process.env.EMAIL,
-            pass: process.env.PASS,
+    const options = {
+        method: 'POST',
+        url: 'https://rapidprod-sendgrid-v1.p.rapidapi.com/mail/send',
+        headers: {
+            'content-type': 'application/json',
+            'X-RapidAPI-Host': process.env.X_RAPIDAPI_HOST,
+            'X-RapidAPI-Key': process.env.X_RAPIDAPI_KEY,
         },
-    });
-    // mail configurations
-    var mailOptions = {
-        from: process.env.EMAIL,
-        to: to,
-        subject: subject,
-        html: `Your otp is :${otp}`,
+        data: `{"personalizations":[{"to":[{"email":"${to}"}],"subject":"${subject}"}],"from":{"email":"no-reply@parkify-web.herokuapp.com"},"content":[{"type":"text/plain","value":"Your otp is : ${otp}"}]}`,
     };
-    await transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-            console.log(error);
-        } else {
-            console.log('Email sent: ' + info.response);
-        }
-    });
+    axios
+        .request(options)
+        .then(function (response) {
+            console.log('Email sent: ' + response.data);
+        })
+        .catch(function (error) {
+            console.error(error);
+        });
 }
 
 // Register... receives user object and creates new user document in the DB
