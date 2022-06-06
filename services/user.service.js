@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
 const helper = require('../utils/helper');
 const Transaction = require('../models/transaction.model');
-const axios = require("axios");
+const axios = require('axios');
 
 /* ------------ JWT Configs ----------- */
 
@@ -22,17 +22,20 @@ async function sendmail(to, subject, otp) {
         method: 'POST',
         url: 'https://rapidprod-sendgrid-v1.p.rapidapi.com/mail/send',
         headers: {
-          'content-type': 'application/json',
-          'X-RapidAPI-Host': process.env.X_RAPIDAPI_HOST,
-          'X-RapidAPI-Key': process.env.X_RAPIDAPI_KEY,
+            'content-type': 'application/json',
+            'X-RapidAPI-Host': process.env.X_RAPIDAPI_HOST,
+            'X-RapidAPI-Key': process.env.X_RAPIDAPI_KEY,
         },
-        data:`{"personalizations":[{"to":[{"email":"${to}"}],"subject":"${subject}"}],"from":{"email":"no-reply@parkify-web.herokuapp.com"},"content":[{"type":"text/plain","value":"Your otp is : ${otp}"}]}`
-      };
-    axios.request(options).then(function (response) {
-        console.log('Email sent: ' + response.data);        
-    }).catch(function (error) {
-        console.error(error);
-    });
+        data: `{"personalizations":[{"to":[{"email":"${to}"}],"subject":"${subject}"}],"from":{"email":"no-reply@parkify-web.herokuapp.com"},"content":[{"type":"text/plain","value":"Your otp is : ${otp}"}]}`,
+    };
+    axios
+        .request(options)
+        .then(function (response) {
+            console.log('Email sent: ' + response.data);
+        })
+        .catch(function (error) {
+            console.error(error);
+        });
 }
 
 // Register... receives user object and creates new user document in the DB

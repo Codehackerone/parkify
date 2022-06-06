@@ -3,12 +3,12 @@
 Hasslefree way to book your parking space with easy cancellations and timeline extensions
 
 ---
-![cover image](https://github.com/Codehackerone/parkify/blob/main/public/img/coverpage.png)
----
+
+## ![cover image](https://github.com/Codehackerone/parkify/blob/main/public/img/coverpage.png)
+
 ## Why Parkify?
 
 The application will make it easier for the drivers to find and pre-book their slots at the parking locations. The application will also save the frustration of the drivers who at times out of urgency park their cars on the street itself, which further adds to the traffic in the locality. With the use of the application, business professionals can focus on their daily tasks and not worry about their parking space.
-
 
 ## Built With
 
@@ -84,10 +84,9 @@ Create a `.env` file then edit it with your settings. You will need:
 
 ## License
 
-```Parkify``` is available under the MIT license. See the LICENSE file for more info.
+`Parkify` is available under the MIT license. See the LICENSE file for more info.
 
 ## Contributing
-
 
 1. Find an issue to work on from [here](https://github.com/codehackerone/parkify/issues)
 2. Ask the owner/maintainer for permission to work on the issue.
@@ -100,5 +99,6 @@ Create a `.env` file then edit it with your settings. You will need:
 
 Please read `CODE_OF_CONDUCT.md` for details on the code of conduct, and the process for submitting pull requests.
 
- ---  
+---
+
 This repo is crafted with <span style="color: #8b0000;">&hearts;</span> and owned/maintained by <a href="https://github.com/codehackerone">@codehackerone</a>.
