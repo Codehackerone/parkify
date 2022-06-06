@@ -1,6 +1,29 @@
-# Parkify
+<!--# Parkify-->
+<div align="center">
+<picture>
+  <source srcset="https://res.cloudinary.com/codehackerone/image/upload/v1654404920/Parkify/logo-white_em2e4o.png" media="(prefers-color-scheme: dark)">
+  <img alt="PARKIFY_LOGO" id="logo-dark" src="https://res.cloudinary.com/codehackerone/image/upload/v1654404897/Parkify/logo-black_y6ungi.png" height="100" />
+</picture>
+    <!--<img alt="PARKIFY_LOGO" id="logo-dark" src="public/img/logo-black.png" height="100" />-->
+    <br>
+<!--     <img alt="PARKIFY_TEXT" id="logo-white" src="public/img/logo-text-black.png" height="40"/> -->
+<picture>
+  <source srcset="https://res.cloudinary.com/codehackerone/image/upload/v1654404904/Parkify/logo-text-white_jqhdsf.png" media="(prefers-color-scheme: dark)">
+  <img alt="PARKIFY_TEXT" id="logo-dark" src="https://res.cloudinary.com/codehackerone/image/upload/v1654404900/Parkify/logo-text-black_qnvhtr.png" height="40" />
+</picture>  
+<br><br>
+    <span style="font-weight: bold;">&#60;/&#62;</span> with <span style="color: #8b0000;">&hearts;</span> by <a href="https://github.com/codehackerone">@codehackerone</a>.<br><br>
+<p align="center">
+    <img src="https://img.shields.io/badge/version-1.0.0-yellowgreen" alt="version 1.0.0"/>
+    <img src="https://img.shields.io/badge/license-MIT-brightgreen" alt="license MIT"/>
+    <img src="https://img.shields.io/github/issues-pr-raw/codehackerone/parkify.svg" />
+    <img src="https://img.shields.io/github/issues-raw/codehackerone/parkify.svg"/>
+    <img src="https://img.shields.io/badge/author-Codehackerone-orange" alt="author codehackerone"/>
+</p>
+</div>
+<br>
 
-Hasslefree way to book your parking space with easy cancellations and timeline extensions
+> Hasslefree way to book your parking space with easy cancellations and timeline extensions<br>
 
 ---
 ![cover image](https://github.com/Codehackerone/parkify/blob/main/public/img/coverpage.png)
@@ -101,4 +124,4 @@ Create a `.env` file then edit it with your settings. You will need:
 Please read `CODE_OF_CONDUCT.md` for details on the code of conduct, and the process for submitting pull requests.
 
  ---  
-This repo is crafted with <span style="color: #8b0000;">&hearts;</span> and owned/maintained by <a href="https://github.com/codehackerone">@codehackerone</a>.
+This repo is owned/maintained by <a href="https://github.com/codehackerone">@codehackerone</a>.
