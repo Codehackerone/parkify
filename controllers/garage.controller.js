@@ -109,20 +109,51 @@ const renderfindgarage = async (req, res) => {
 //TODO: IN PROGRESS
 //rendergaragebyIp... renders the garages in progress
 const rendergaragebyip = async (req, res) => {
-    if (req.ipv4 !== undefined) {
         var config = {
             method: 'get',
             url: 'http://ip-api.com/json/',
         };
         axios(config)
-            .then(function (response) {
-                console.log(JSON.stringify(response.data));
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }
-    res.render('garages/foundgarage', { body: req.body, by: 'IP' });
+            .then(async function(response) {
+                const geoData = await geocoder.forwardGeocode({
+                    query: response.data.city,
+                    limit: 1,
+                })
+                .send();
+            var geometry = geoData.body.features[0].geometry;
+            var garages = await garageService.AllGarages();
+            var min_distance = 10000000.0;
+            var dist = {};
+            for (let garage of garages) {
+                // getting the distance between the garage and the user
+                var distance = garageService.DistanceCal(
+                    response.data.lat,
+                    response.data.lon,
+                    garage.geometry.coordinates[1],
+                    garage.geometry.coordinates[0]
+                );
+                if (distance <= min_distance) {
+                    dist = garage;
+                    min_distance = distance;
+                }
+            }  
+            if (min_distance > 1000.0) {
+                req.flash(
+                    'err',
+                    'Sorry! No garages found within 1000.0 km radius.'
+                );
+                res.redirect('/garage/find');
+            } else {
+                res.render('garages/foundgarage', {
+                    body: req.body,
+                    by: 'IP',
+                    geometry: geometry,
+                    maptoken: mapBoxToken,
+                    garage: dist,
+                    min_distance: min_distance,
+                });
+            }
+        })
 };
 
 //rendergaragebyloc... renders the garages in progress
@@ -139,8 +170,7 @@ const rendergaragebyloc = async (req, res) => {
                     limit: 1,
                 })
                 .send();
-            var geometry = geoData.body.features[0].geometry;
-            geometry.place_name = req.body.location;
+            var geometry = geoData.body.features[0].geometry;;
             var garages = await garageService.AllGarages();
             var min_distance = 10000000.0;
             var dist = {};
