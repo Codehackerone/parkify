@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/bookings.css">
   <title>Dashboard</title>
   <%- include('../partials/header.ejs') %>  
 </head>
@@ -15,17 +16,50 @@
 
 <h3>Your Bookings:</h3>
   <hr>
-  <% for(let booking of bookings){%>
-    <b>Status</b>-<%=booking.status%><br>
-    <b>Start Time</b>-<%=new Date(booking.start_time*1000)%><br>
-    <b>End Time</b>-<%=new Date(booking.end_time*1000)%><br>
-    <% if(booking.status!=="Cancelled" && booking.status!=="Completed"){ %> 
-    <form action="/booking/cancel/<%=booking._id%>" method="POST">
-    <button type="submit" class="btn btn-danger">Cancel Booking</button>
-    </form>
-    <% } %> 
-    <hr>
-  <% }if(!bookings){ %>
+  <ul class="cards">
+    <% for(let booking of bookings){%>
+      <% var startTime = new Date(booking.start_time*1000) %>
+      <% var endTime = new Date(booking.end_time*1000) %>
+      <li class="cardItem">
+        <div class="eachCard">
+          <div class="cardContent">
+            <div class="cardTitle">
+              <b>Status-</b>
+              <%if(booking.status === 'Cancelled') { %>
+              <span style="color: rgb(253, 59, 59);"><%=booking.status %></span>
+              <% }else if(booking.status === 'Booked') { %>
+              <span style="color: rgb(250, 234, 17);"><%=booking.status %></span>
+              <% }else if(booking.status === 'Completed') { %>
+              <span style="color: rgb(0, 250, 0);"><%=booking.status %></span>
+              <% } %>
+            </div>
+            <p class="cardText">
+              <div class="startTime">
+                <b style="font-weight:bolder;">Starts From- </b><b>Date</b>: <%=startTime.toDateString()%><span><b> Time: </b> <%=startTime.getHours() + ":" + startTime.getMinutes()%></span> <br>
+              </div>
+              <div class="endTime">
+                <b style="font-weight:bolder;">Ends On- </b><b>Date</b>: <%=endTime.toDateString()%><span><b> Time: </b> <%=endTime.getHours() + ":" + endTime.getMinutes()%></span> <br>
+              </div>
+            </p>
+          </div>
+            <% if(booking.status==="Booked"){ %> 
+            <form action="/booking/cancel/<%=booking._id%>" method="POST">
+              <button type="submit" class="btn button btn-danger">Cancel Booking ?</button>
+            </form>
+            <% }else if(booking.status==="Completed") { %> 
+              <form action="" method="">
+              <a type="" class="btn buttonS btn-success" style="cursor:default;">Booking completed</a>
+              </form>
+            <% }else if(booking.status==="Cancelled") { %> 
+              <form action="" method="">
+              <a type="" class="btn buttonD btn-danger" style="cursor:default;">Booking Cancelled</a>
+              </form>
+            <% } %>
+        </div>
+      </li>
+        <% } %>
+  </ul>
+  <% if(!bookings){ %>
     No Bookings Found!
   <% } %>
   %>
