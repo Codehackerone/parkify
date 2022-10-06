@@ -44,6 +44,7 @@ const renderDashboard = async (req, res) => {
             await bookingService.completeBooking(booking._id);
         }
     }
+    var bookings = await bookingService.FindByUser(req.body.user_id);
     res.render('users/dashboard', { body: req.body, bookings: bookings });
 };
 
