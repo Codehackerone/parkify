@@ -48,7 +48,7 @@ Router.route('/:id')
         garageController.deleteGarage
     );
 
-Router.route('/search/:name').get(
+Router.route('/search').post(
     // IsLoggedInMiddleware(),
     garageController.renderSearchGarage
 );

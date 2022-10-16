@@ -16,24 +16,32 @@
             <br />
             <div id="cluster-map"></div>
             <br />
-            <div class="row">
-                <div class="input-group w-50 mx-auto">
-                    <span class="input-group-text" id="basic-addon1"
-                        ><button
-                            style="padding: 0; border: none; background: none"
-                            onclick="searchGaragesByName()"
-                        >
-                            <i class="fas fa-search"></i></button
-                    ></span>
-                    <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Search Garages..."
-                        aria-label="Search"
-                        aria-describedby="basic-addon1"
-                    />
+            <form action="/garage/search" method="POST">
+                <div class="row">
+                    <div class="input-group w-50 mx-auto">
+                        <span class="input-group-text" id="basic-addon1"
+                            ><button
+                                style="
+                                    padding: 0;
+                                    border: none;
+                                    background: none;
+                                "
+                                onclick="searchGaragesByName()"
+                            >
+                                <i class="fas fa-search"></i></button
+                        ></span>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="name"
+                            name="name"
+                            placeholder="Search Garages..."
+                            aria-label="Search"
+                            aria-describedby="basic-addon1"
+                        />
+                    </div>
                 </div>
-            </div>
+            </form>
             <hr />
             <% for (let garage of garages){%>
             <div class="card mb-3">

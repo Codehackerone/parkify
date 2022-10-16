@@ -211,7 +211,7 @@ const rendergaragebyloc = async (req, res) => {
 };
 
 const renderSearchGarage = async (req, res) => {
-    var name = req.params.name;
+    var name = req.body.name;
     const garages = await garageService.FindSearchByNameGarage(name);
     if (!garages) {
         req.flash('err', 'Error :Garage Not Found!');
@@ -220,7 +220,7 @@ const renderSearchGarage = async (req, res) => {
         res.render('garages/searchgarage', {
             garages: garages,
             maptoken: mapBoxToken,
-            name: name,
+            name:name
         });
     }
 };
