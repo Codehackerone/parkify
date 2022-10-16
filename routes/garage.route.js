@@ -14,7 +14,7 @@ const getIpMiddleware = require('../middleware/ip.middleware');
 /* ------------ Endpoint Definitions ----------- */
 
 Router.route('/').get(
-    // IsLoggedInMiddleware(),
+    IsLoggedInMiddleware(),
     garageController.renderAllGarages
 );
 
@@ -49,7 +49,7 @@ Router.route('/:id')
     );
 
 Router.route('/search').post(
-    // IsLoggedInMiddleware(),
+    IsLoggedInMiddleware(),
     garageController.renderSearchGarage
 );
 
