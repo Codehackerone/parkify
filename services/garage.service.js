@@ -67,6 +67,10 @@ const DistanceCal = (lat1, lon1, lat2, lon2) => {
     return c * r;
 };
 
+const FindSearchByNameGarage = async (name) => {
+    return await Garage.find({ $or: [{ name: { $regex: name } }] });
+};
+
 module.exports = {
     AddGarage,
     FindGarage,
@@ -74,4 +78,5 @@ module.exports = {
     DeleteGarage,
     ReturnCoords,
     DistanceCal,
+    FindSearchByNameGarage,
 };

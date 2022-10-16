@@ -48,6 +48,11 @@ Router.route('/:id')
         garageController.deleteGarage
     );
 
+Router.route('/search').post(
+    IsLoggedInMiddleware(),
+    garageController.renderSearchGarage
+);
+
 Router.route('/apislot/:id').get(garageController.apiSlotInfo);
 
 module.exports = Router;

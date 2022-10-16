@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>All Garages</title>
+        <title>All Garages Which contains <%= name%></title>
         <%- include('../partials/header')%>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <%- include('../partials/maps') %>
@@ -12,15 +12,8 @@
         include('../partials/alerts')%>
         <br />
         <div class="container">
-            <center><h1>All Garages</h1></center>
+            <center><h1>All Garages which contains <%= name%></h1></center>
             <br />
-
-            <% if(body.user_type==="admin") {%>
-            <center>
-                <a href="/garage/add" class="btn btn-primary">Add Garage</a>
-            </center>
-            <hr />
-            <% } %>
             <div id="cluster-map"></div>
             <br />
             <form action="/garage/search" method="POST">
@@ -97,16 +90,11 @@
     </body>
 </html>
 <script>
-    let garage_raw = '<%-JSON.stringify(garages) %>';
-    let name = '';
+    const garage_raw = '<%-JSON.stringify(garages) %>';
     const mapboxtoken = '<%=maptoken%>';
+    const name = '<%=name%>';
     const searchGaragesByName = async () => {
-        const nameInput = document.getElementById('name');
-        name = nameInput.value;
-        // const res = await fetch(`/garage/search/${name}`);
-        // const garage =await res.json();
-        // console.log(garage);
-        // garage_raw = garage;
+        console.log('Hello');
     };
 </script>
 <script src="/js/clustermap.js"></script>
