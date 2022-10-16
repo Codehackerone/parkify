@@ -14,7 +14,7 @@ const getIpMiddleware = require('../middleware/ip.middleware');
 /* ------------ Endpoint Definitions ----------- */
 
 Router.route('/').get(
-    IsLoggedInMiddleware(),
+    // IsLoggedInMiddleware(),
     garageController.renderAllGarages
 );
 
@@ -47,6 +47,11 @@ Router.route('/:id')
         IsAdminMiddleware(),
         garageController.deleteGarage
     );
+
+Router.route('/search/:name').get(
+    // IsLoggedInMiddleware(),
+    garageController.renderSearchGarage
+);
 
 Router.route('/apislot/:id').get(garageController.apiSlotInfo);
 
